@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "stonegrinder",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Stone Grinder",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.nightfallclosure.stonegrinder.StoneGrinderMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "stonegrinder.mixins.json"
   ],
 
   "depends": {
