@@ -14,7 +14,7 @@
   },
 
   "license": "GNU LGPLv3",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/stonegrinder/icon.png",
 
   "environment": "*",
   "entrypoints": {
