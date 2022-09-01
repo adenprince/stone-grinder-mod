@@ -36,6 +36,7 @@ public class GrinderBlock extends AbstractFurnaceBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(world, type, ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE);
+        return world.isClient ? null : checkType(type, ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE,
+                GrinderBlockEntity::serverTick);
     }
 }

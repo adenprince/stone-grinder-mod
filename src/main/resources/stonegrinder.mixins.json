@@ -6,7 +6,13 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "AbstractFurnaceBlockEntityInvoker",
+    "AbstractFurnaceBlockEntityAccessor"
+  ],
+  "server": [
+    "AbstractFurnaceBlockEntityInvoker",
+    "AbstractFurnaceBlockEntityAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
