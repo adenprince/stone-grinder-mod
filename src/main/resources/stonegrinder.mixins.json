@@ -8,11 +8,14 @@
   "client": [
     "ExampleMixin",
     "AbstractFurnaceBlockEntityInvoker",
-    "AbstractFurnaceBlockEntityAccessor"
+    "AbstractFurnaceBlockEntityAccessor",
+    "AbstractFurnaceScreenHandlerAccessor",
+    "AbstractFurnaceScreenAccessor"
   ],
   "server": [
     "AbstractFurnaceBlockEntityInvoker",
-    "AbstractFurnaceBlockEntityAccessor"
+    "AbstractFurnaceBlockEntityAccessor",
+    "AbstractFurnaceScreenHandlerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
