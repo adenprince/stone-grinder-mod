@@ -1,10 +1,7 @@
 package net.nightfallclosure.stonegrinder;
 
 import net.fabricmc.api.ModInitializer;
-import net.nightfallclosure.stonegrinder.registry.ModBlockEntities;
-import net.nightfallclosure.stonegrinder.registry.ModBlocks;
-import net.nightfallclosure.stonegrinder.registry.ModRecipes;
-import net.nightfallclosure.stonegrinder.registry.ModScreenHandlers;
+import net.nightfallclosure.stonegrinder.registry.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,5 +25,6 @@ public class StoneGrinderMod implements ModInitializer {
 		ModBlockEntities.registerModBlockEntities();
 		ModRecipes.registerRecipes();
 		ModScreenHandlers.registerScreenHandlers();
+		ModStats.registerStats();
 	}
 }

@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.nightfallclosure.stonegrinder.block.entity.GrinderBlockEntity;
 import net.nightfallclosure.stonegrinder.registry.ModBlockEntities;
+import net.nightfallclosure.stonegrinder.registry.ModStats;
 import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock extends AbstractFurnaceBlock {
@@ -23,8 +24,7 @@ public class GrinderBlock extends AbstractFurnaceBlock {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof GrinderBlockEntity) {
             player.openHandledScreen((NamedScreenHandlerFactory)((Object)blockEntity));
-            // TODO: Add stat?
-            //player.incrementStat(Stats.INTERACT_WITH_BLAST_FURNACE);
+            player.incrementStat(ModStats.INTERACT_WITH_GRINDER);
         }
     }
 
