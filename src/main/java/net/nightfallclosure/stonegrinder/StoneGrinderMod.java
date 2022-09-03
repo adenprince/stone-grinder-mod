@@ -26,5 +26,6 @@ public class StoneGrinderMod implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModScreenHandlers.registerScreenHandlers();
 		ModStats.registerStats();
+		ModSounds.registerSoundEvents();
 	}
 }

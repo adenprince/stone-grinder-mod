@@ -12,6 +12,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,17 +20,25 @@ import net.nightfallclosure.stonegrinder.mixin.AbstractFurnaceBlockEntityAccesso
 import net.nightfallclosure.stonegrinder.mixin.AbstractFurnaceBlockEntityInvoker;
 import net.nightfallclosure.stonegrinder.registry.ModBlockEntities;
 import net.nightfallclosure.stonegrinder.registry.ModRecipes;
+import net.nightfallclosure.stonegrinder.registry.ModSounds;
 import net.nightfallclosure.stonegrinder.screen.GrinderScreenHandler;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private static final int grindingParticleTimerThreshold = 2;
+    private static final int maxSoundTimerThreshold = 241; // Exclusive bound
+    private static final int minSoundTimerThreshold = 140; // Inclusive bound
 
     private int grindingParticleTimer;
+    private int grindingSoundTimer;
+    private int grindingSoundTimerThreshold;
     private boolean grindingOnPreviousTick;
 
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE, pos, state, ModRecipes.GRINDING_RECIPE_TYPE);
+
+        // TODO: Fix instance variables getting reset when world is started
         this.grindingParticleTimer = 0;
+        this.grindingSoundTimer = 0;
         this.grindingOnPreviousTick = false;
     }
 
@@ -59,6 +68,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             if (!blockEntity.grindingOnPreviousTick) {
                 // Grinding started on the current tick
                 blockEntity.grindingParticleTimer = 0;
+                blockEntity.grindingSoundTimer = 0;
             }
 
             if (blockEntity.grindingParticleTimer == 0) {
@@ -70,14 +80,30 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
                 spawnGrinderParticles((ServerWorld) world, pos, grindingParticleEffect);
             }
 
+            if (blockEntity.grindingSoundTimer == 0) {
+                world.playSound(null, pos, ModSounds.GRINDER_GRIND_SOUND_EVENT,
+                        SoundCategory.BLOCKS, 1F, 1F);
+                blockEntity.grindingSoundTimerThreshold = nextGrindingSoundTimerThreshold(world);
+            }
+
             ++blockEntity.grindingParticleTimer;
 
             if (blockEntity.grindingParticleTimer >= grindingParticleTimerThreshold) {
                 blockEntity.grindingParticleTimer = 0;
             }
+
+            ++blockEntity.grindingSoundTimer;
+
+            if (blockEntity.grindingSoundTimer >= blockEntity.grindingSoundTimerThreshold) {
+                blockEntity.grindingSoundTimer = 0;
+            }
         }
 
         blockEntity.grindingOnPreviousTick = blockEntityIsGrinding;
+    }
+
+    private static int nextGrindingSoundTimerThreshold(World world) {
+        return world.random.nextInt(maxSoundTimerThreshold - minSoundTimerThreshold) + minSoundTimerThreshold;
     }
 
     private static final double[][] particleXZOffsets = {

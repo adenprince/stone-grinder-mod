@@ -1,4 +1,5 @@
 {
   "block.stonegrinder.grinder": "Grinder",
-  "stat.stonegrinder.interact_with_grinder": "Interactions with Grinder"
+  "stat.stonegrinder.interact_with_grinder": "Interactions with Grinder",
+  "subtitles.block.grinder.grind": "Grinding"
 }

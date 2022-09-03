@@ -1,0 +1,8 @@
+{
+  "grind": {
+    "subtitle": "subtitles.block.grinder.grind",
+    "sounds": [
+      "stonegrinder:grind"
+    ]
+  }
+}
