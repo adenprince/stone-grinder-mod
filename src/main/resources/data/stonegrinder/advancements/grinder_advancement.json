@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "stonegrinder:grinder"
+    },
+    "title": {
+      "translate": "advancements.stonegrinder.grinder.title"
+    },
+    "description": {
+      "translate": "advancements.stonegrinder.grinder.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "stonegrinder:grinder"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
