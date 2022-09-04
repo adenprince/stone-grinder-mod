@@ -1,0 +1,9 @@
+{
+  "type": "stonegrinder:grinding",
+  "ingredient": {
+    "tag": "c:grinds_to_cobbled_deepslate"
+  },
+  "result": "minecraft:cobbled_deepslate",
+  "experience": 0.1,
+  "cookingtime": 100
+}
