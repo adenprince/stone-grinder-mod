@@ -30,7 +30,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
     private int grindingParticleTimer;
     private int grindingSoundTimer;
-    private int grindingSoundTimerThreshold;
     private boolean grindingOnPreviousTick;
 
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
@@ -67,39 +66,36 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         if (blockEntityIsGrinding) {
             if (!blockEntity.grindingOnPreviousTick) {
                 // Grinding started on the current tick
-                blockEntity.grindingParticleTimer = 0;
                 blockEntity.grindingSoundTimer = 0;
-            }
-
-            if (blockEntity.grindingParticleTimer == 0) {
-                // A copy is made to prevent a missing particle texture during slowdown
-                // TODO: Investigate this issue
-                ItemStack grindingItemStackCopy = grindingItemStack.copy();
-                ItemStackParticleEffect grindingParticleEffect = new ItemStackParticleEffect(ParticleTypes.ITEM,
-                        grindingItemStackCopy);
-                spawnGrinderParticles((ServerWorld) world, pos, grindingParticleEffect);
-            }
-
-            if (blockEntity.grindingSoundTimer == 0) {
-                world.playSound(null, pos, ModSounds.GRINDER_GRIND_SOUND_EVENT,
-                        SoundCategory.BLOCKS, 1F, 1F);
-                blockEntity.grindingSoundTimerThreshold = nextGrindingSoundTimerThreshold(world);
-            }
-
-            ++blockEntity.grindingParticleTimer;
-
-            if (blockEntity.grindingParticleTimer >= grindingParticleTimerThreshold) {
                 blockEntity.grindingParticleTimer = 0;
             }
 
-            ++blockEntity.grindingSoundTimer;
-
-            if (blockEntity.grindingSoundTimer >= blockEntity.grindingSoundTimerThreshold) {
-                blockEntity.grindingSoundTimer = 0;
-            }
+            blockEntity.tickGrindingSound();
+            blockEntity.tickGrindingParticles(grindingItemStack);
         }
 
         blockEntity.grindingOnPreviousTick = blockEntityIsGrinding;
+    }
+
+    private void tickGrindingSound() {
+        if (--this.grindingSoundTimer <= 0) {
+            world.playSound(null, pos, ModSounds.GRINDER_GRIND_SOUND_EVENT,
+                    SoundCategory.BLOCKS, 1F, 1F);
+            this.grindingSoundTimer = nextGrindingSoundTimerThreshold(world);
+        }
+    }
+
+    private void tickGrindingParticles(ItemStack grindingItemStack) {
+        if (--this.grindingParticleTimer <= 0) {
+            // A copy is made to prevent a missing particle texture during slowdown
+            // TODO: Investigate this issue
+            ItemStack grindingItemStackCopy = grindingItemStack.copy();
+            ItemStackParticleEffect grindingParticleEffect = new ItemStackParticleEffect(ParticleTypes.ITEM,
+                    grindingItemStackCopy);
+            spawnGrinderParticles((ServerWorld) world, pos, grindingParticleEffect);
+
+            this.grindingParticleTimer = grindingParticleTimerThreshold;
+        }
     }
 
     private static int nextGrindingSoundTimerThreshold(World world) {
