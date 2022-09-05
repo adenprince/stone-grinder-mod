@@ -1,9 +1,9 @@
 {
   "type": "stonegrinder:grinding",
   "ingredient": {
-    "item": "minecraft:gravel"
+    "tag": "c:grinds_to_gravel"
   },
-  "result": "minecraft:sand",
+  "result": "minecraft:gravel",
   "experience": 0.1,
   "cookingtime": 100
 }
