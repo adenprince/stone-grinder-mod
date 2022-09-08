@@ -1,5 +1,14 @@
 {
   "variants": {
-    "": { "model": "stonegrinder:block/grinder" }
+    "grinder_animation_frame=0": { "model":  "stonegrinder:block/grinder_0" },
+    "grinder_animation_frame=1": { "model":  "stonegrinder:block/grinder_1" },
+    "grinder_animation_frame=2": { "model":  "stonegrinder:block/grinder_2" },
+    "grinder_animation_frame=3": { "model":  "stonegrinder:block/grinder_3" },
+    "grinder_animation_frame=4": { "model":  "stonegrinder:block/grinder_4" },
+    "grinder_animation_frame=5": { "model":  "stonegrinder:block/grinder_5" },
+    "grinder_animation_frame=6": { "model":  "stonegrinder:block/grinder_6" },
+    "grinder_animation_frame=7": { "model":  "stonegrinder:block/grinder_7" },
+    "grinder_animation_frame=8": { "model":  "stonegrinder:block/grinder_8" },
+    "grinder_animation_frame=9": { "model":  "stonegrinder:block/grinder_9" }
   }
 }

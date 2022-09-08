@@ -11,4 +11,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface AbstractFurnaceBlockEntityAccessor {
     @Accessor
     RecipeManager.MatchGetter<Inventory, ? extends AbstractCookingRecipe> getMatchGetter();
+
+    @Accessor
+    int getCookTime();
 }
