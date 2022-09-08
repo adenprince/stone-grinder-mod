@@ -28,8 +28,8 @@ import java.util.LinkedList;
 import static net.nightfallclosure.stonegrinder.block.custom.GrinderBlock.GRINDER_ANIMATION_FRAME;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
-    private static final int highestPositionFrame = 0;
-    private static final int grindingFrame = 9;
+    private static final int highestPositionFrame = 3;
+    private static final int grindingFrame = 7;
     public static final int defaultFrame = 6; // Used in GrinderBlock class
 
     private static final int grindingParticleTimerThreshold = 2;
@@ -105,7 +105,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
     private void queueNewBlockAnimation() {
         this.queueTransitionToHighestPositionFrame();
-        this.queueMultipleOfOneFrame(highestPositionFrame, 5);
+        this.queueMultipleOfOneFrame(highestPositionFrame, 7);
         this.queueTransitionToGrindingFrame();
     }
 
