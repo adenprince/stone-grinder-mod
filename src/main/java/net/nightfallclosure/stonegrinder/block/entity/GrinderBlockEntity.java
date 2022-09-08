@@ -33,22 +33,20 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     public static final int defaultFrame = 6; // Used in GrinderBlock class
 
     private static final int grindingParticleTimerThreshold = 2;
-    private static final int maxSoundTimerThreshold = 241; // Exclusive bound
-    private static final int minSoundTimerThreshold = 140; // Inclusive bound
 
     private int grindingParticleTimer;
-    private int grindingSoundTimer;
     private boolean grindingOnPreviousTick;
     private final LinkedList<Integer> animationFrames;
     private int currentFrame;
+    private boolean grindingSoundPlayed;
 
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE, pos, state, ModRecipes.GRINDING_RECIPE_TYPE);
 
         // TODO: Fix instance variables getting reset when world is started
         this.grindingParticleTimer = 0;
-        this.grindingSoundTimer = 0;
         this.grindingOnPreviousTick = false;
+        this.grindingSoundPlayed = true;
         animationFrames = new LinkedList<>();
         currentFrame = defaultFrame;
     }
@@ -71,25 +69,14 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         boolean blockEntityIsGrinding = blockEntity.isGrinding();
 
         if (blockEntityIsGrinding) {
-            if (!blockEntity.grindingOnPreviousTick) {
-                // Grinding started on the current tick
-                blockEntity.grindingSoundTimer = 0;
+            // Grinding started on the current tick or grinding new block
+            if (!blockEntity.grindingOnPreviousTick ||
+                    ((AbstractFurnaceBlockEntityAccessor)blockEntity).getCookTime() == 0) {
                 blockEntity.grindingParticleTimer = 0;
+                blockEntity.grindingSoundPlayed = false;
 
                 blockEntity.animationFrames.clear();
                 blockEntity.queueNewBlockAnimation();
-            }
-            else if (((AbstractFurnaceBlockEntityAccessor)blockEntity).getCookTime() == 0) {
-                // Grinding new block
-                blockEntity.grindingParticleTimer = 0;
-
-                blockEntity.animationFrames.clear();
-                blockEntity.queueNewBlockAnimation();
-            }
-
-            if (blockEntity.currentFrame == grindingFrame && !grindingItemStack.isEmpty()) {
-                blockEntity.tickGrindingParticles(grindingItemStack);
-                blockEntity.tickGrindingSound();
             }
         }
         else if (blockEntity.getLastFrame() != defaultFrame) {
@@ -98,6 +85,16 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         }
 
         blockEntity.tickAnimation(world, pos, state);
+
+        if (blockEntityIsGrinding && blockEntity.currentFrame == grindingFrame && !grindingItemStack.isEmpty()) {
+            blockEntity.tickGrindingParticles(grindingItemStack);
+
+            if (!blockEntity.grindingSoundPlayed) {
+                world.playSound(null, pos, ModSounds.GRINDER_GRIND_SOUND_EVENT,
+                        SoundCategory.BLOCKS, 1F, 1F);
+                blockEntity.grindingSoundPlayed = true;
+            }
+        }
 
         blockEntity.grindingOnPreviousTick = blockEntityIsGrinding;
     }
@@ -151,14 +148,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         this.currentFrame = nextFrame;
     }
 
-    private void tickGrindingSound() {
-        if (--this.grindingSoundTimer <= 0) {
-            world.playSound(null, pos, ModSounds.GRINDER_GRIND_SOUND_EVENT,
-                    SoundCategory.BLOCKS, 1F, 1F);
-            this.grindingSoundTimer = nextGrindingSoundTimerThreshold(world);
-        }
-    }
-
     private void tickGrindingParticles(ItemStack grindingItemStack) {
         if (--this.grindingParticleTimer <= 0) {
             // A copy is made to prevent a missing particle texture during slowdown
@@ -170,10 +159,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
             this.grindingParticleTimer = grindingParticleTimerThreshold;
         }
-    }
-
-    private static int nextGrindingSoundTimerThreshold(World world) {
-        return world.random.nextInt(maxSoundTimerThreshold - minSoundTimerThreshold) + minSoundTimerThreshold;
     }
 
     private static final double[][] particleXZOffsets = {
