@@ -1,9 +1,0 @@
-{
-  "type": "stonegrinder:grinding",
-  "ingredient": {
-    "item": "minecraft:cobblestone"
-  },
-  "result": "minecraft:gravel",
-  "experience": 0.1,
-  "cookingtime": 100
-}
