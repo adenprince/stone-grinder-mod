@@ -9,16 +9,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.util.registry.Registry;
 import net.nightfallclosure.stonegrinder.StoneGrinderMod;
 import net.nightfallclosure.stonegrinder.block.custom.GrinderBlock;
 
 public class ModBlocks {
+    public static Item GRINDER_BLOCK_ITEM;
     public static Block GRINDER_BLOCK;
 
-    private static Block registerBlock(String name, Block block, ItemGroup tab) {
-        registerBlockItem(name, block, tab);
-        return Registry.register(Registry.BLOCK, new Identifier(StoneGrinderMod.MOD_ID, name), block);
+    private static Pair<Item, Block> registerBlock(String name, Block block, ItemGroup tab) {
+        Item registeredItem = registerBlockItem(name, block, tab);
+        Block registeredBlock = Registry.register(Registry.BLOCK,
+                new Identifier(StoneGrinderMod.MOD_ID, name), block);
+        return new Pair<>(registeredItem, registeredBlock);
     }
 
     private static Item registerBlockItem(String name, Block block, ItemGroup tab) {
@@ -34,6 +38,9 @@ public class ModBlocks {
                 .requiresTool()
                 .sounds(BlockSoundGroup.STONE));
 
-        GRINDER_BLOCK = registerBlock("grinder", unregisteredGrinderBlock, ItemGroup.DECORATIONS);
+        Pair<Item, Block> registeredItemBlockPair =
+                registerBlock("grinder", unregisteredGrinderBlock, ItemGroup.DECORATIONS);
+        GRINDER_BLOCK_ITEM = registeredItemBlockPair.getLeft();
+        GRINDER_BLOCK = registeredItemBlockPair.getRight();
     }
 }

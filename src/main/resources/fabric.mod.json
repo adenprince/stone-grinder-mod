@@ -23,6 +23,12 @@
     ],
     "client": [
       "net.nightfallclosure.stonegrinder.StoneGrinderModClient"
+    ],
+    "rei_client": [
+      "net.nightfallclosure.stonegrinder.rei.plugin.client.StoneGrinderREIClientPlugin"
+    ],
+    "rei_common": [
+      "net.nightfallclosure.stonegrinder.rei.plugin.common.StoneGrinderREIPlugin"
     ]
   },
   "mixins": [

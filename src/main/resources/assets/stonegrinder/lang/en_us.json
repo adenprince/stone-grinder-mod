@@ -3,5 +3,6 @@
   "stat.stonegrinder.interact_with_grinder": "Interactions with Grinder",
   "subtitles.block.grinder.grind": "Grinding",
   "advancements.stonegrinder.grinder.title": "Embrace the Grind",
-  "advancements.stonegrinder.grinder.description": "Obtain a Grinder block"
+  "advancements.stonegrinder.grinder.description": "Obtain a Grinder block",
+  "category.stonegrinder.grinding": "Grinding"
 }
