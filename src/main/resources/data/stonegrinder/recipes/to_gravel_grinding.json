@@ -1,7 +1,7 @@
 {
   "type": "stonegrinder:grinding",
   "ingredient": {
-    "tag": "c:grinds_to_gravel"
+    "tag": "stonegrinder:grinds_to_gravel"
   },
   "result": "minecraft:gravel",
   "experience": 0.1,

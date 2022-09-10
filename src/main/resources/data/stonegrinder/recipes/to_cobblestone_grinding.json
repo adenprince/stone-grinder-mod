@@ -1,7 +1,7 @@
 {
   "type": "stonegrinder:grinding",
   "ingredient": {
-    "tag": "c:grinds_to_cobblestone"
+    "tag": "stonegrinder:grinds_to_cobblestone"
   },
   "result": "minecraft:cobblestone",
   "experience": 0.1,

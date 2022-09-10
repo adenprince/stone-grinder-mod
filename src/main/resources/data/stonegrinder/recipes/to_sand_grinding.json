@@ -1,7 +1,7 @@
 {
   "type": "stonegrinder:grinding",
   "ingredient": {
-    "tag": "c:grinds_to_sand"
+    "tag": "stonegrinder:grinds_to_sand"
   },
   "result": "minecraft:sand",
   "experience": 0.1,
