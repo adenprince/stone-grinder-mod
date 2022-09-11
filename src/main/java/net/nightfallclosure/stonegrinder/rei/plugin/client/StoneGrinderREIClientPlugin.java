@@ -6,6 +6,7 @@ import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import me.shedaniel.rei.plugin.client.DefaultClientPlugin;
 import net.nightfallclosure.stonegrinder.recipe.GrindingRecipe;
 import net.nightfallclosure.stonegrinder.registry.ModBlocks;
 import net.nightfallclosure.stonegrinder.registry.ModRecipes;
@@ -21,6 +22,7 @@ public class StoneGrinderREIClientPlugin implements REIClientPlugin {
         registry.add(new DefaultGrindingCategory(GRINDING, EntryStacks.of(ModBlocks.GRINDER_BLOCK_ITEM),
                 "category.stonegrinder.grinding"));
         registry.addWorkstations(GRINDING, EntryStacks.of(ModBlocks.GRINDER_BLOCK_ITEM));
+        registry.addWorkstations(DefaultClientPlugin.FUEL, EntryStacks.of(ModBlocks.GRINDER_BLOCK_ITEM));
     }
 
     @Override
