@@ -5,6 +5,7 @@ import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.AbstractCookingRecipe;
@@ -23,6 +24,7 @@ import net.nightfallclosure.stonegrinder.registry.ModRecipes;
 import net.nightfallclosure.stonegrinder.registry.ModSounds;
 import net.nightfallclosure.stonegrinder.screen.GrinderScreenHandler;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import static net.nightfallclosure.stonegrinder.block.custom.GrinderBlock.GRINDER_ANIMATION_FRAME;
@@ -36,14 +38,13 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
     private int grindingParticleTimer;
     private boolean grindingOnPreviousTick;
-    private final LinkedList<Integer> animationFrames;
+    private LinkedList<Integer> animationFrames;
     private int currentFrame;
     private boolean grindingSoundPlayed;
 
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE, pos, state, ModRecipes.GRINDING_RECIPE_TYPE);
 
-        // TODO: Fix instance variables getting reset when world is started
         this.grindingParticleTimer = 0;
         this.grindingOnPreviousTick = false;
         this.grindingSoundPlayed = true;
@@ -205,5 +206,26 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         return (isBurning || (ingredientSlotIsNotEmpty && fuelSlotIsNotEmpty)) &&
                 AbstractFurnaceBlockEntityInvoker.invokeCanAcceptRecipeOutput(recipe,
                         this.inventory, this.getMaxCountPerStack());
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        this.grindingParticleTimer = nbt.getShort("GrindingParticleTimer");
+        this.grindingOnPreviousTick = nbt.getBoolean("GrindingOnPreviousTick");
+        this.animationFrames = new LinkedList<>(
+                Arrays.stream(nbt.getIntArray("AnimationFrames")).boxed().toList());
+        this.currentFrame = nbt.getShort("CurrentFrame");
+        this.grindingSoundPlayed = nbt.getBoolean("GrindingSoundPlayed");
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        nbt.putShort("GrindingParticleTimer", (short)this.grindingParticleTimer);
+        nbt.putBoolean("GrindingOnPreviousTick", this.grindingOnPreviousTick);
+        nbt.putIntArray("AnimationFrames", this.animationFrames.stream().mapToInt(x -> x).toArray());
+        nbt.putShort("CurrentFrame", (short)this.currentFrame);
+        nbt.putBoolean("GrindingSoundPlayed", this.grindingSoundPlayed);
     }
 }
