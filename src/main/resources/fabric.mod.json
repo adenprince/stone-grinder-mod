@@ -4,13 +4,14 @@
   "version": "${version}",
 
   "name": "Stone Grinder",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Adds a Grinder block with utility recipes for building blocks.",
   "authors": [
-    "Me!"
+    "NightfallClosure",
+    "ninjakitty844"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "",
+    "sources": "https://github.com/adenprince/stone-grinder-mod-fabric"
   },
 
   "license": "GNU LGPLv3",
