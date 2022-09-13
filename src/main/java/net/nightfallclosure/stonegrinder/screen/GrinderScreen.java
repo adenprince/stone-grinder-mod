@@ -12,11 +12,11 @@ import net.nightfallclosure.stonegrinder.StoneGrinderMod;
 import net.nightfallclosure.stonegrinder.mixin.AbstractFurnaceScreenAccessor;
 
 public class GrinderScreen extends AbstractFurnaceScreen<GrinderScreenHandler> {
-    public static final Identifier TEXTURE = new Identifier(StoneGrinderMod.MOD_ID,
+    public static final Identifier GRINDER_GUI_TEXTURE = new Identifier(StoneGrinderMod.MOD_ID,
             "textures/gui/grinder_gui.png");
 
     public GrinderScreen(GrinderScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, new BlastFurnaceRecipeBookScreen(), inventory, title, TEXTURE);
+        super(handler, new BlastFurnaceRecipeBookScreen(), inventory, title, GRINDER_GUI_TEXTURE);
     }
 
     @Override
