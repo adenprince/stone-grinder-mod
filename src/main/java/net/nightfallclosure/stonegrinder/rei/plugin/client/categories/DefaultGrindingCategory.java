@@ -4,12 +4,11 @@ import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.widgets.BurningFire;
 import me.shedaniel.rei.api.client.gui.widgets.Slot;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
-import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.plugin.client.categories.cooking.DefaultCookingCategory;
 import me.shedaniel.rei.plugin.common.displays.cooking.DefaultCookingDisplay;
-import net.nightfallclosure.stonegrinder.screen.GrinderScreen;
+import net.nightfallclosure.stonegrinder.rei.plugin.client.gui.widgets.DrillWidget;
 
 import java.util.Comparator;
 import java.util.List;
@@ -48,8 +47,9 @@ public class DefaultGrindingCategory extends DefaultCookingCategory {
         });
 
         cookingInputSlot.ifPresent(slot -> {
-            Widget drillWidget = Widgets.createTexturedWidget(GrinderScreen.TEXTURE,
-                    slot.getBounds().getX() + 2, slot.getBounds().getY() - 16, 57, 36, 14, 14);
+            Rectangle drillBounds = new Rectangle(
+                    slot.getBounds().getX() + 2, slot.getBounds().getY() - 16, 14, 14);
+            Widget drillWidget = new DrillWidget(drillBounds);
             defaultCookingCategoryWidgets.add(drillWidget);
         });
 
