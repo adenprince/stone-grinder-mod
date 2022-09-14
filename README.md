@@ -1,4 +1,4 @@
-# Overview
+# Stone Grinder
 The Stone Grinder mod is a Minecraft mod built with Fabric that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable.
 
 ## Usage
