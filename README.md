@@ -13,6 +13,10 @@ To craft a Grinder block, surround an iron ingot in the center slot with cobbles
 
 This mod has compatibility with the Roughly Enough Items mod for viewing Grinder block recipes.
 
+## Authors
+- NightfallClosure: Programmer, Designer
+- ninjakitty844: Artist, Designer
+
 ## Additional Notes
 Please do not request support for Minecraft versions or mod loaders other than those currently supported. The mod creators will make decisions about future support.
 
