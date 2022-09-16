@@ -34,7 +34,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private static final int grindingFrame = 7;
     public static final int defaultFrame = 6; // Used in GrinderBlock class
 
-    private static final int grindingParticleTimerThreshold = 2;
+    private static final int grindingParticleTimerThreshold = 1;
 
     private int grindingParticleTimer;
     private boolean grindingOnPreviousTick;
@@ -183,12 +183,20 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             {-1.0D, 0.0D}
     };
 
-    private static final double particleStartingPointRandomOffsetMagnitude = 0.15D;
-    private static final double particleDeltaRandomOffsetMagnitude = 1.75D;
+    private static final double particleStartingPointRandomOffsetMagnitude = 0.25D;
+    private static final double particleDeltaRandomOffsetMagnitude = 2.0D;
+    private static final double doNotSpawnParticleProbability = 0.125D;
 
     private static void spawnGrinderParticles(ServerWorld serverWorld, BlockPos pos,
                                        ItemStackParticleEffect grindingParticleEffect) {
-        double randomDouble = serverWorld.random.nextDouble() - 0.5D;
+        double randomDouble = serverWorld.random.nextDouble();
+
+        if (randomDouble < doNotSpawnParticleProbability) {
+            return;
+        }
+
+        randomDouble -= 0.5D;
+
         double particleStartingPointRandomOffset = randomDouble * particleStartingPointRandomOffsetMagnitude;
         double particleDeltaRandomOffset = randomDouble * particleDeltaRandomOffsetMagnitude;
 
