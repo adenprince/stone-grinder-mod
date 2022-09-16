@@ -176,17 +176,37 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             {0.0D, 2.0D}
     };
 
+    private static final double[][] particleXZRandomOffsetVectors = {
+            {0.0D, -1.0D},
+            {0.0D, 1.0D},
+            {1.0D, 0.0D},
+            {-1.0D, 0.0D}
+    };
+
+    private static final double particleStartingPointRandomOffsetMagnitude = 0.15D;
+    private static final double particleDeltaRandomOffsetMagnitude = 1.75D;
+
     private static void spawnGrinderParticles(ServerWorld serverWorld, BlockPos pos,
                                        ItemStackParticleEffect grindingParticleEffect) {
+        double randomDouble = serverWorld.random.nextDouble() - 0.5D;
+        double particleStartingPointRandomOffset = randomDouble * particleStartingPointRandomOffsetMagnitude;
+        double particleDeltaRandomOffset = randomDouble * particleDeltaRandomOffsetMagnitude;
+
         for (int i = 0; i < 4; ++i) {
+            double particleXRandomOffset = particleXZRandomOffsetVectors[i][0] * particleStartingPointRandomOffset;
+            double particleZRandomOffset = particleXZRandomOffsetVectors[i][1] * particleStartingPointRandomOffset;
+
+            double particleXDeltaRandomOffset = particleXZRandomOffsetVectors[i][0] * particleDeltaRandomOffset;
+            double particleZDeltaRandomOffset = particleXZRandomOffsetVectors[i][1] * particleDeltaRandomOffset;
+
             serverWorld.spawnParticles(grindingParticleEffect,
-                    pos.getX() + particleXZOffsets[i][0],
+                    pos.getX() + particleXZOffsets[i][0] + particleXRandomOffset,
                     pos.getY() + 0.3D,
-                    pos.getZ() + particleXZOffsets[i][1],
+                    pos.getZ() + particleXZOffsets[i][1] + particleZRandomOffset,
                     0,
-                    particleXZDeltas[i][0],
+                    particleXZDeltas[i][0] + particleXDeltaRandomOffset,
                     0.5D,
-                    particleXZDeltas[i][1],
+                    particleXZDeltas[i][1] + particleZDeltaRandomOffset,
                     0.05D);
         }
     }
