@@ -34,9 +34,10 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private static final int grindingFrame = 7;
     public static final int defaultFrame = 6; // Used in GrinderBlock class
 
-    private static final int grindingParticleTimerThreshold = 1;
+    private static final double particleStartingPointRandomOffsetMagnitude = 0.25D;
+    private static final double particleDeltaRandomOffsetMagnitude = 2.0D;
+    private static final double doNotSpawnParticleProbability = 0.125D;
 
-    private int grindingParticleTimer;
     private boolean grindingOnPreviousTick;
     private LinkedList<Integer> animationFrames;
     private int currentFrame;
@@ -45,7 +46,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE, pos, state, ModRecipes.GRINDING_RECIPE_TYPE);
 
-        this.grindingParticleTimer = 0;
         this.grindingOnPreviousTick = false;
         this.grindingSoundPlayed = true;
         animationFrames = new LinkedList<>();
@@ -73,7 +73,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             // Grinding started on the current tick or grinding new block
             if (!blockEntity.grindingOnPreviousTick ||
                     ((AbstractFurnaceBlockEntityAccessor)blockEntity).getCookTime() == 0) {
-                blockEntity.grindingParticleTimer = 0;
                 blockEntity.grindingSoundPlayed = false;
 
                 blockEntity.animationFrames.clear();
@@ -150,15 +149,16 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     }
 
     private void tickGrindingParticles(ItemStack grindingItemStack) {
-        if (--this.grindingParticleTimer <= 0) {
-            // A copy is made to prevent a missing particle texture during slowdown
-            // TODO: Investigate this issue
-            ItemStack grindingItemStackCopy = grindingItemStack.copy();
-            ItemStackParticleEffect grindingParticleEffect = new ItemStackParticleEffect(ParticleTypes.ITEM,
-                    grindingItemStackCopy);
-            spawnGrinderParticles((ServerWorld) world, pos, grindingParticleEffect);
+        // A copy is made to prevent a missing particle texture during slowdown
+        // TODO: Investigate this issue
+        ItemStack grindingItemStackCopy = grindingItemStack.copy();
+        ItemStackParticleEffect grindingParticleEffect = new ItemStackParticleEffect(ParticleTypes.ITEM,
+                grindingItemStackCopy);
 
-            this.grindingParticleTimer = grindingParticleTimerThreshold;
+        ServerWorld serverWorld = (ServerWorld)world;
+
+        if (serverWorld.random.nextDouble() > doNotSpawnParticleProbability) {
+            spawnGrinderParticles(serverWorld, pos, grindingParticleEffect);
         }
     }
 
@@ -183,19 +183,9 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             {-1.0D, 0.0D}
     };
 
-    private static final double particleStartingPointRandomOffsetMagnitude = 0.25D;
-    private static final double particleDeltaRandomOffsetMagnitude = 2.0D;
-    private static final double doNotSpawnParticleProbability = 0.125D;
-
     private static void spawnGrinderParticles(ServerWorld serverWorld, BlockPos pos,
-                                       ItemStackParticleEffect grindingParticleEffect) {
-        double randomDouble = serverWorld.random.nextDouble();
-
-        if (randomDouble < doNotSpawnParticleProbability) {
-            return;
-        }
-
-        randomDouble -= 0.5D;
+                                              ItemStackParticleEffect grindingParticleEffect) {
+        double randomDouble = serverWorld.random.nextDouble() - 0.5D;
 
         double particleStartingPointRandomOffset = randomDouble * particleStartingPointRandomOffsetMagnitude;
         double particleDeltaRandomOffset = randomDouble * particleDeltaRandomOffsetMagnitude;
@@ -239,7 +229,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.grindingParticleTimer = nbt.getShort("GrindingParticleTimer");
         this.grindingOnPreviousTick = nbt.getBoolean("GrindingOnPreviousTick");
         this.animationFrames = new LinkedList<>(
                 Arrays.stream(nbt.getIntArray("AnimationFrames")).boxed().toList());
@@ -250,7 +239,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        nbt.putShort("GrindingParticleTimer", (short)this.grindingParticleTimer);
         nbt.putBoolean("GrindingOnPreviousTick", this.grindingOnPreviousTick);
         nbt.putIntArray("AnimationFrames", this.animationFrames.stream().mapToInt(x -> x).toArray());
         nbt.putShort("CurrentFrame", (short)this.currentFrame);
