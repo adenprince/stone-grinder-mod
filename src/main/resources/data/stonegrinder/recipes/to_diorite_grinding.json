@@ -1,0 +1,9 @@
+{
+  "type": "stonegrinder:grinding",
+  "ingredient": {
+    "tag": "stonegrinder:grinds_to_diorite"
+  },
+  "result": "minecraft:diorite",
+  "experience": 0.1,
+  "cookingtime": 100
+}
