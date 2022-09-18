@@ -5,6 +5,17 @@
     "minecraft:sandstone",
     "minecraft:chiseled_sandstone",
     "minecraft:cut_sandstone",
-    "minecraft:smooth_sandstone"
+    "minecraft:smooth_sandstone",
+    "minecraft:black_terracotta",
+    "minecraft:blue_terracotta",
+    "minecraft:brown_terracotta",
+    "minecraft:cyan_terracotta",
+    "minecraft:gray_terracotta",
+    "minecraft:green_terracotta",
+    "minecraft:light_blue_terracotta",
+    "minecraft:light_gray_terracotta",
+    "minecraft:lime_terracotta",
+    "minecraft:white_terracotta",
+    "minecraft:yellow_terracotta"
   ]
 }
