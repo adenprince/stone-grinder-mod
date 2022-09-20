@@ -5,7 +5,7 @@ The Stone Grinder mod is a Minecraft mod built with Fabric that adds a Grinder b
 To craft a Grinder block, surround an iron ingot in the center slot with cobblestone in a crafting table. The Grinder block is powered by fuel, similar to a furnace. Blocks take 5 seconds to grind.
 
 ## Grinding Recipes
-- Stone, Stone Brick Variants -> Cobblestone
+- Stone, Stone Brick Variants, Smooth Stone -> Cobblestone
 - Deepslate, Polished Deepslate, Deepslate Brick Variants -> Cobbled Deepslate
 - Gilded Blackstone, Polished Blackstone Variants -> Blackstone
 - Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Blackstone -> Gravel
