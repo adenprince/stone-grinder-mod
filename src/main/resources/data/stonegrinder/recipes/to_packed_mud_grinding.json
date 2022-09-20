@@ -1,0 +1,9 @@
+{
+  "type": "stonegrinder:grinding",
+  "ingredient": {
+    "tag": "stonegrinder:grinds_to_packed_mud"
+  },
+  "result": "minecraft:packed_mud",
+  "experience": 0.1,
+  "cookingtime": 100
+}

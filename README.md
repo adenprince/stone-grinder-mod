@@ -14,6 +14,8 @@ To craft a Grinder block, surround an iron ingot in the center slot with cobbles
 - Concrete -> Respective Concrete Powder
 - Polished/Smooth Basalt -> Basalt
 - Polished Andesite/Diorite/Granite -> Andesite/Diorite/Granite
+- Mud Bricks -> Packed Mud
+- Prismarine Bricks -> Prismarine
 
 This mod has compatibility with the Roughly Enough Items mod for viewing Grinder block recipes.
 
