@@ -8,7 +8,7 @@ To craft a Grinder block, surround an iron ingot in the center slot with cobbles
 - Stone, Stone Brick Variants, Smooth Stone -> Cobblestone
 - Deepslate, Polished Deepslate, Deepslate Brick Variants -> Cobbled Deepslate
 - Gilded Blackstone, Polished Blackstone Variants -> Blackstone
-- Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Blackstone -> Gravel
+- Cobblestone, Mossy Cobblestone, Cobbled Deepslate, Blackstone, Andesite, Diorite, Granite, Calcite, Tuff -> Gravel
 - Gravel, Sandstone Variants, Terracotta Variants (that don't grind to red sand) -> Sand
 - Red Sandstone Variants, Magenta/Orange/Pink/Purple/Red Terracotta -> Red Sand
 - Concrete -> Respective Concrete Powder
