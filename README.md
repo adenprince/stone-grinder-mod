@@ -1,6 +1,10 @@
 # Stone Grinder
 The Stone Grinder mod is a Minecraft mod built with Fabric that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable.
 
+<img src="img/grinder_block_screenshot.png" title="Grinder Block Screenshot" width="500">
+
+*The Grinder block in action.*
+
 ## Usage
 To craft a Grinder block, surround an iron ingot in the center slot with cobblestone in a crafting table. The Grinder block is powered by fuel, similar to a furnace. Blocks take 5 seconds to grind.
 
