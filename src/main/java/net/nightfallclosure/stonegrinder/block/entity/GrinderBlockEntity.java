@@ -150,7 +150,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
     private void tickGrindingParticles(ItemStack grindingItemStack) {
         // A copy is made to prevent a missing particle texture during slowdown
-        // TODO: Investigate this issue
         ItemStack grindingItemStackCopy = grindingItemStack.copy();
         ItemStackParticleEffect grindingParticleEffect = new ItemStackParticleEffect(ParticleTypes.ITEM,
                 grindingItemStackCopy);

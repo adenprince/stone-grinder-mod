@@ -13,8 +13,8 @@ import net.nightfallclosure.stonegrinder.registry.ModRecipes;
 import net.nightfallclosure.stonegrinder.registry.ModScreenHandlers;
 
 public class GrinderScreenHandler extends AbstractFurnaceScreenHandler {
-    // TODO: Don't use blast furnace recipe book category
     public GrinderScreenHandler(int syncId, PlayerInventory playerInventory) {
+        // It's weird to use the blast furnace recipe book category
         super(ModScreenHandlers.GRINDER_SCREEN_HANDLER_TYPE, ModRecipes.GRINDING_RECIPE_TYPE,
                 RecipeBookCategory.BLAST_FURNACE, syncId, playerInventory);
 
