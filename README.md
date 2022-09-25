@@ -21,7 +21,7 @@ To craft a Grinder block, surround an iron ingot in the center slot with cobbles
 - Mud Bricks -> Packed Mud
 - Prismarine Bricks -> Prismarine
 
-This mod has compatibility with the Roughly Enough Items mod for viewing Grinder block recipes.
+This mod has compatibility with the [Roughly Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) for viewing Grinder block recipes.
 
 ## Adding Grinding Recipes
 Additional grinding recipes can be added by mods or datapacks by adding recipes with the type `stonegrinder:grinding`. Default Stone Grinder recipes are in [this folder](src/main/resources/data/stonegrinder/recipes).
