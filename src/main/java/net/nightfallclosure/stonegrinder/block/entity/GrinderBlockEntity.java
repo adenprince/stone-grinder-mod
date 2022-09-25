@@ -162,17 +162,17 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     }
 
     private static final double[][] particleXZOffsets = {
-            {0.0D, 0.5D},
-            {1.0D, 0.5D},
-            {0.5D, 0.0D},
-            {0.5D, 1.0D}
+            {0.1D, 0.5D},
+            {0.9D, 0.5D},
+            {0.5D, 0.1D},
+            {0.5D, 0.9D}
     };
 
     private static final double[][] particleXZDeltas = {
-            {-2.0D, 0.0D},
-            {2.0D, 0.0D},
-            {0.0D, -2.0D},
-            {0.0D, 2.0D}
+            {-2.1D, 0.0D},
+            {2.1D, 0.0D},
+            {0.0D, -2.1D},
+            {0.0D, 2.1D}
     };
 
     private static final double[][] particleXZRandomOffsetVectors = {
