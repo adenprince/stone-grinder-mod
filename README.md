@@ -1,7 +1,7 @@
 # Stone Grinder
 [![License](https://img.shields.io/github/license/adenprince/stone-grinder-mod-fabric)](https://github.com/adenprince/stone-grinder-mod-fabric/blob/1.19/LICENSE.txt)
 ![Supported MC Versions](https://img.shields.io/badge/Supported%20MC%20Versions-1.19.2-brightgreen)
-[![CurseForge](https://cf.way2muchnoise.eu/full_stone-grinder_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/stone-grinder)
+[![CurseForge](https://cf.way2muchnoise.eu/full_681480_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/stone-grinder)
 
 The Stone Grinder mod is a Minecraft mod built with Fabric that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable. This mod requires the Fabric API.
 
