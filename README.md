@@ -5,6 +5,8 @@
 
 The Stone Grinder mod is a Minecraft mod built with Fabric that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable. This mod requires the Fabric API.
 
+Note: The Forge version of this mod is in progress, and there are no publicly available Forge builds of this mod yet.
+
 <img src="img/grinder_block_screenshot.png" title="Grinder Block Screenshot" width="500">
 
 *The Grinder block in action.*
