@@ -4,10 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.BlastFurnaceMenu;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.nightfallclosure.stonegrinder.screen.GrinderMenu;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     public GrinderBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -20,7 +20,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     }
 
     protected AbstractContainerMenu createMenu(int pId, Inventory pPlayer) {
-        // TODO: Use custom menu
-        return new BlastFurnaceMenu(pId, pPlayer, this, this.dataAccess);
+        return new GrinderMenu(pId, pPlayer, this, this.dataAccess);
     }
 }

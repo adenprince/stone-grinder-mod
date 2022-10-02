@@ -1,6 +1,7 @@
 package net.nightfallclosure.stonegrinder;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,6 +12,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.nightfallclosure.stonegrinder.block.ModBlocks;
 import net.nightfallclosure.stonegrinder.block.entity.ModBlockEntities;
 import net.nightfallclosure.stonegrinder.item.ModItems;
+import net.nightfallclosure.stonegrinder.screen.GrinderScreen;
+import net.nightfallclosure.stonegrinder.screen.ModMenuTypes;
 import org.slf4j.Logger;
 
 @Mod(StoneGrinder.MOD_ID)
@@ -26,6 +29,7 @@ public class StoneGrinder
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -37,14 +41,13 @@ public class StoneGrinder
 
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModEvents
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            MenuScreens.register(ModMenuTypes.GRINDER_MENU_TYPE.get(), GrinderScreen::new);
         }
     }
 }
