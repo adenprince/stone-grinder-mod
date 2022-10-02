@@ -1,5 +1,6 @@
 {
   "block.stonegrinder.grinder": "Grinder",
+  "stonegrinder.container.grinder": "Grinder",
   "stat.stonegrinder.interact_with_grinder": "Interactions with Grinder",
   "subtitles.block.grinder.grind": "Grinding",
   "advancements.stonegrinder.grinder.title": "Embrace the Grind",

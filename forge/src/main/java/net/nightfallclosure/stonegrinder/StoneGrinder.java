@@ -9,6 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.nightfallclosure.stonegrinder.block.ModBlocks;
+import net.nightfallclosure.stonegrinder.block.entity.ModBlockEntities;
 import net.nightfallclosure.stonegrinder.item.ModItems;
 import org.slf4j.Logger;
 
@@ -24,6 +25,7 @@ public class StoneGrinder
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
