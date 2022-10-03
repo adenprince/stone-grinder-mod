@@ -3,21 +3,20 @@ package net.nightfallclosure.stonegrinder.screen;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.nightfallclosure.stonegrinder.recipe.ModRecipes;
 
 public class GrinderMenu extends AbstractFurnaceMenu {
     public GrinderMenu(int pContainerId, Inventory pPlayerInventory) {
-        // TODO: Use custom recipe type
-        super(ModMenuTypes.GRINDER_MENU_TYPE.get(), RecipeType.BLASTING, RecipeBookType.BLAST_FURNACE,
-                pContainerId, pPlayerInventory);
+        super(ModMenuTypes.GRINDER_MENU_TYPE.get(), ModRecipes.GRINDING_RECIPE_TYPE.get(),
+                RecipeBookType.BLAST_FURNACE, pContainerId, pPlayerInventory);
 
         addGrinderSlots(pPlayerInventory);
     }
 
     public GrinderMenu(int pContainerId, Inventory pPlayerInventory, Container pGrinderContainer,
                        ContainerData pGrinderData) {
-        super(ModMenuTypes.GRINDER_MENU_TYPE.get(), RecipeType.BLASTING, RecipeBookType.BLAST_FURNACE,
-                pContainerId, pPlayerInventory, pGrinderContainer, pGrinderData);
+        super(ModMenuTypes.GRINDER_MENU_TYPE.get(), ModRecipes.GRINDING_RECIPE_TYPE.get(),
+                RecipeBookType.BLAST_FURNACE, pContainerId, pPlayerInventory, pGrinderContainer, pGrinderData);
 
         addGrinderSlots(pPlayerInventory);
     }
