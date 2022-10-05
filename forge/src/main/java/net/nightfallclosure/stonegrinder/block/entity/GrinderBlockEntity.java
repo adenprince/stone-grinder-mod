@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -17,12 +18,17 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.nightfallclosure.stonegrinder.recipe.ModRecipes;
 import net.nightfallclosure.stonegrinder.screen.GrinderMenu;
+import net.nightfallclosure.stonegrinder.sound.ModSounds;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private static final double doNotSpawnParticleProbability = 0.125D;
 
+    private boolean grindingOnPreviousTick;
+
     public GrinderBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.GRINDER.get(), pPos, pBlockState, ModRecipes.GRINDING_RECIPE_TYPE.get());
+
+        this.grindingOnPreviousTick = false;
     }
 
     @Override
@@ -45,8 +51,16 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
         if (blockEntityIsGrinding) {
             // Grinding started on the current tick or grinding new block
+            if (!pBlockEntity.grindingOnPreviousTick ||
+                    pBlockEntity.cookingProgress == 0) {
+                pLevel.playSound(null, pPos, ModSounds.GRINDER_GRIND_SOUND_EVENT.get(),
+                        SoundSource.BLOCKS, 1f, 1f);
+            }
+
             pBlockEntity.tickGrindingParticles(grindingItemStack);
         }
+
+        pBlockEntity.grindingOnPreviousTick = blockEntityIsGrinding;
     }
 
     private void tickGrindingParticles(ItemStack grindingItemStack) {

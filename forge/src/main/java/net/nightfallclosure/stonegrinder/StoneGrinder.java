@@ -15,6 +15,7 @@ import net.nightfallclosure.stonegrinder.item.ModItems;
 import net.nightfallclosure.stonegrinder.recipe.ModRecipes;
 import net.nightfallclosure.stonegrinder.screen.GrinderScreen;
 import net.nightfallclosure.stonegrinder.screen.ModMenuTypes;
+import net.nightfallclosure.stonegrinder.sound.ModSounds;
 import org.slf4j.Logger;
 
 @Mod(StoneGrinder.MOD_ID)
@@ -32,6 +33,7 @@ public class StoneGrinder
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
