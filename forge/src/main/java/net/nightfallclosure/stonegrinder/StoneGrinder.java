@@ -16,6 +16,7 @@ import net.nightfallclosure.stonegrinder.recipe.ModRecipes;
 import net.nightfallclosure.stonegrinder.screen.GrinderScreen;
 import net.nightfallclosure.stonegrinder.screen.ModMenuTypes;
 import net.nightfallclosure.stonegrinder.sound.ModSounds;
+import net.nightfallclosure.stonegrinder.stat.ModStats;
 import org.slf4j.Logger;
 
 @Mod(StoneGrinder.MOD_ID)
@@ -42,7 +43,9 @@ public class StoneGrinder
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        event.enqueueWork(() -> {
+            ModStats.registerStats();
+        });
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

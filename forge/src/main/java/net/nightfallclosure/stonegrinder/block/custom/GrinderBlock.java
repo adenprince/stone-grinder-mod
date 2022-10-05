@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.nightfallclosure.stonegrinder.block.entity.GrinderBlockEntity;
 import net.nightfallclosure.stonegrinder.block.entity.ModBlockEntities;
+import net.nightfallclosure.stonegrinder.stat.ModStats;
 
 import javax.annotation.Nullable;
 
@@ -44,8 +45,7 @@ public class GrinderBlock extends AbstractFurnaceBlock {
         if (blockentity instanceof GrinderBlockEntity) {
             pPlayer.openMenu((MenuProvider)blockentity);
 
-            // TODO: Add grinder interaction stat
-            //pPlayer.awardStat(Stats.INTERACT_WITH_BLAST_FURNACE);
+            pPlayer.awardStat(ModStats.INTERACT_WITH_GRINDER);
         }
     }
 
