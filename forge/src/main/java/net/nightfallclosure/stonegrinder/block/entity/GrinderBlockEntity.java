@@ -25,10 +25,13 @@ import java.util.LinkedList;
 import static net.nightfallclosure.stonegrinder.block.custom.GrinderBlock.GRINDER_ANIMATION_FRAME;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
+    // TODO: Move constants to file in common folder
     private static final int highestPositionFrame = 0;
     private static final int grindingFrame = 4;
     public static final int defaultFrame = 3; // Used in GrinderBlock class
 
+    private static final double particleStartingPointRandomOffsetMagnitude = 0.25D;
+    private static final double particleDeltaRandomOffsetMagnitude = 2.0D;
     private static final double doNotSpawnParticleProbability = 0.125D;
 
     private boolean grindingOnPreviousTick;
@@ -156,6 +159,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         }
     }
 
+    // TODO: Move these arrays to file in common folder
     private static final double[][] particleXZOffsets = {
             {0.1D, 0.5D},
             {0.9D, 0.5D},
@@ -170,17 +174,35 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             {0.0D, 2.1D}
     };
 
+    private static final double[][] particleXZRandomOffsetVectors = {
+            {0.0D, -1.0D},
+            {0.0D, 1.0D},
+            {1.0D, 0.0D},
+            {-1.0D, 0.0D}
+    };
+
     private static void spawnGrinderParticles(ServerLevel serverLevel, BlockPos pos,
                                               ItemParticleOption grindingParticleOption) {
+        double randomDouble = serverLevel.random.nextDouble() - 0.5D;
+
+        double particleStartingPointRandomOffset = randomDouble * particleStartingPointRandomOffsetMagnitude;
+        double particleDeltaRandomOffset = randomDouble * particleDeltaRandomOffsetMagnitude;
+
         for (int i = 0; i < 4; ++i) {
+            double particleXRandomOffset = particleXZRandomOffsetVectors[i][0] * particleStartingPointRandomOffset;
+            double particleZRandomOffset = particleXZRandomOffsetVectors[i][1] * particleStartingPointRandomOffset;
+
+            double particleXDeltaRandomOffset = particleXZRandomOffsetVectors[i][0] * particleDeltaRandomOffset;
+            double particleZDeltaRandomOffset = particleXZRandomOffsetVectors[i][1] * particleDeltaRandomOffset;
+
             serverLevel.sendParticles(grindingParticleOption,
-                    pos.getX() + particleXZOffsets[i][0],
+                    pos.getX() + particleXZOffsets[i][0] + particleXRandomOffset,
                     pos.getY() + 0.3D,
-                    pos.getZ() + particleXZOffsets[i][1],
+                    pos.getZ() + particleXZOffsets[i][1] + particleZRandomOffset,
                     0,
-                    particleXZDeltas[i][0],
+                    particleXZDeltas[i][0] + particleXDeltaRandomOffset,
                     0.5D,
-                    particleXZDeltas[i][1],
+                    particleXZDeltas[i][1] + particleZDeltaRandomOffset,
                     0.05D);
         }
     }
