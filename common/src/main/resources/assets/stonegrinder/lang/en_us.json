@@ -5,5 +5,7 @@
   "subtitles.block.grinder.grind": "Grinding",
   "advancements.stonegrinder.grinder.title": "Embrace the Grind",
   "advancements.stonegrinder.grinder.description": "Obtain a Grinder block",
-  "category.stonegrinder.grinding": "Grinding"
+  "category.stonegrinder.grinding": "Grinding",
+  "category.stonegrinder.grinding.experience": "%s XP",
+  "category.stonegrinder.grinding.time.seconds": "%ss"
 }
