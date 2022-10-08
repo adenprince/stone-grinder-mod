@@ -3,6 +3,7 @@ package net.nightfallclosure.stonegrinder.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -19,7 +20,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.nightfallclosure.stonegrinder.recipe.ModRecipes;
 import net.nightfallclosure.stonegrinder.screen.GrinderMenu;
 import net.nightfallclosure.stonegrinder.sound.ModSounds;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import static net.nightfallclosure.stonegrinder.block.custom.GrinderBlock.GRINDER_ANIMATION_FRAME;
@@ -35,7 +38,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private static final double doNotSpawnParticleProbability = 0.125D;
 
     private boolean grindingOnPreviousTick;
-    private final LinkedList<Integer> animationFrames;
+    private LinkedList<Integer> animationFrames;
     private int currentFrame;
     private boolean grindingSoundPlayed;
 
@@ -220,5 +223,24 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
         return (isBurning || (ingredientSlotIsNotEmpty && fuelSlotIsNotEmpty)) &&
                 this.canBurn(recipe, this.items, this.getMaxStackSize());
+    }
+
+    @Override
+    public void load(@NotNull CompoundTag nbt) {
+        super.load(nbt);
+        this.grindingOnPreviousTick = nbt.getBoolean("GrindingOnPreviousTick");
+        this.animationFrames = new LinkedList<>(
+                Arrays.stream(nbt.getIntArray("AnimationFrames")).boxed().toList());
+        this.currentFrame = nbt.getShort("CurrentFrame");
+        this.grindingSoundPlayed = nbt.getBoolean("GrindingSoundPlayed");
+    }
+
+    @Override
+    protected void saveAdditional(@NotNull CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        nbt.putBoolean("GrindingOnPreviousTick", this.grindingOnPreviousTick);
+        nbt.putIntArray("AnimationFrames", this.animationFrames.stream().mapToInt(x -> x).toArray());
+        nbt.putShort("CurrentFrame", (short)this.currentFrame);
+        nbt.putBoolean("GrindingSoundPlayed", this.grindingSoundPlayed);
     }
 }
