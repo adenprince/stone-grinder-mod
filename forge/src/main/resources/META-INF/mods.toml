@@ -6,11 +6,11 @@ license="GNU LGPLv3"
 modId="stonegrinder"
 version="${file.jarVersion}"
 displayName="Stone Grinder"
-logoFile="TODO.png"
-credits=""
+logoFile="stonegrinder_icon_256x256.png"
 authors="NightfallClosure, ninjakitty844"
 description='''
 Adds a Grinder block with utility recipes for building blocks.
+Unused building materials can be recycled into other blocks, and sand is made renewable.
 '''
 
 [[dependencies.stonegrinder]]
