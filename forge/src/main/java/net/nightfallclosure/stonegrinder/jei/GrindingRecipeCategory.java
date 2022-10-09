@@ -1,5 +1,8 @@
 package net.nightfallclosure.stonegrinder.jei;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -21,8 +24,6 @@ import net.nightfallclosure.stonegrinder.StoneGrinder;
 import net.nightfallclosure.stonegrinder.block.ModBlocks;
 import net.nightfallclosure.stonegrinder.recipe.GrindingRecipe;
 
-import java.util.HashMap;
-
 public class GrindingRecipeCategory implements IRecipeCategory<GrindingRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(StoneGrinder.MOD_ID, "grinding");
     public static final ResourceLocation TEXTURE =
@@ -32,9 +33,7 @@ public class GrindingRecipeCategory implements IRecipeCategory<GrindingRecipe> {
     private final IDrawable icon;
     private final IGuiHelper guiHelper;
     private final IDrawableAnimated animatedFlame;
-
-    // TODO: This should use the LoadingCache type
-    private final HashMap<Integer, IDrawableAnimated> arrowCache;
+    private final LoadingCache<Integer, IDrawableAnimated> arrowCache;
 
     private static final int defaultCookingTime = 100;
 
@@ -47,7 +46,13 @@ public class GrindingRecipeCategory implements IRecipeCategory<GrindingRecipe> {
         this.guiHelper = guiHelper;
         this.animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300,
                 IDrawableAnimated.StartDirection.TOP, true);
-        this.arrowCache = new HashMap<>();
+        this.arrowCache = CacheBuilder.newBuilder().maximumSize(25).build(new CacheLoader<>() {
+            @Override
+            public IDrawableAnimated load(Integer cookingTime) {
+                return guiHelper.drawableBuilder(TEXTURE, 176, 14, 24, 17)
+                        .buildAnimated(cookingTime, IDrawableAnimated.StartDirection.LEFT, false);
+            }
+        });
     }
 
     @Override
@@ -84,13 +89,7 @@ public class GrindingRecipeCategory implements IRecipeCategory<GrindingRecipe> {
         if (cookingTime <= 0) {
             cookingTime = defaultCookingTime;
         }
-
-        if (!arrowCache.containsKey(cookingTime)) {
-            arrowCache.put(cookingTime, this.guiHelper.drawableBuilder(TEXTURE, 176, 14, 24, 17)
-                    .buildAnimated(cookingTime, IDrawableAnimated.StartDirection.LEFT, false));
-        }
-
-        return arrowCache.get(cookingTime);
+        return this.arrowCache.getUnchecked(cookingTime);
     }
 
     private void drawExperience(GrindingRecipe recipe, PoseStack poseStack, int y) {
