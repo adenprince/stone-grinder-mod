@@ -3,9 +3,7 @@
 ![Supported MC Versions](https://img.shields.io/badge/Supported%20MC%20Versions-1.19.2-brightgreen)
 [![CurseForge](https://cf.way2muchnoise.eu/full_681480_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/stone-grinder)
 
-The Stone Grinder mod is a Minecraft mod built with Fabric that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable. This mod requires the Fabric API.
-
-Note: The Forge version of this mod is in progress, and there are no publicly available Forge builds of this mod yet.
+The Stone Grinder mod is a Minecraft mod that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable. This mod is available for both the Fabric and Forge mod loaders. The Fabric version of this mod requires the Fabric API.
 
 <img src="img/grinder_block_screenshot.png" title="Grinder Block Screenshot" width="500">
 
@@ -27,12 +25,12 @@ To craft a Grinder block, surround an iron ingot in the center slot with cobbles
 - Mud Bricks -> Packed Mud
 - Prismarine Bricks -> Prismarine
 
-This mod has compatibility with the [Roughly Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) for viewing Grinder block recipes.
+This mod is compatible with the [Roughly Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) for viewing grinding recipes in both the Fabric and Forge versions. The Forge version is also compatible with the [Just Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/jei) for viewing grinding recipes.
 
 ## Adding Grinding Recipes
-Additional grinding recipes can be added by mods or datapacks by adding recipes with the type `stonegrinder:grinding`. Default Stone Grinder recipes are in [this folder](src/main/resources/data/stonegrinder/recipes).
+Additional grinding recipes can be added by mods or datapacks by adding recipes with the type `stonegrinder:grinding`. Default Stone Grinder recipes are in [this folder](common/src/main/resources/data/stonegrinder/recipes).
 
-Existing Stone Grinder item tags such as `grinds_to_sand` can also be added to. Default Stone Grinder tags are in [this folder](src/main/resources/data/stonegrinder/tags/items).
+Existing Stone Grinder item tags such as `grinds_to_sand` can also be added to. Default Stone Grinder tags are in [this folder](common/src/main/resources/data/stonegrinder/tags/items).
 
 ## Authors
 - NightfallClosure: Programmer, Designer
