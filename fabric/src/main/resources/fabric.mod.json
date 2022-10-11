@@ -11,8 +11,8 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/stone-grinder",
-    "sources": "https://github.com/adenprince/stone-grinder-mod-fabric",
-    "issues": "https://github.com/adenprince/stone-grinder-mod-fabric/issues"
+    "sources": "https://github.com/adenprince/stone-grinder-mod",
+    "issues": "https://github.com/adenprince/stone-grinder-mod/issues"
   },
 
   "license": "GNU LGPLv3",

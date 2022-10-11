@@ -1,5 +1,5 @@
 # Stone Grinder
-[![License](https://img.shields.io/github/license/adenprince/stone-grinder-mod-fabric)](https://github.com/adenprince/stone-grinder-mod-fabric/blob/1.19/LICENSE.txt)
+[![License](https://img.shields.io/github/license/adenprince/stone-grinder-mod)](https://github.com/adenprince/stone-grinder-mod/blob/1.19/LICENSE.txt)
 ![Supported MC Versions](https://img.shields.io/badge/Supported%20MC%20Versions-1.19.2-brightgreen)
 [![CurseForge](https://cf.way2muchnoise.eu/full_681480_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/stone-grinder)
 
