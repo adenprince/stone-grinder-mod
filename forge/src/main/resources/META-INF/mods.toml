@@ -1,11 +1,13 @@
 modLoader="javafml"
 loaderVersion="[43,)"
 license="GNU LGPLv3"
+issueTrackerURL="https://github.com/adenprince/stone-grinder-mod/issues"
 
 [[mods]]
 modId="stonegrinder"
 version="${file.jarVersion}"
 displayName="Stone Grinder"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/stone-grinder"
 logoFile="stonegrinder_icon_256x256.png"
 authors="NightfallClosure, ninjakitty844"
 description='''
