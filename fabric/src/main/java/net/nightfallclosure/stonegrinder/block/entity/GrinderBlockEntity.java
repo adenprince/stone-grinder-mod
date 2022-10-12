@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import static net.nightfallclosure.stonegrinder.block.custom.GrinderBlock.GRINDER_ANIMATION_FRAME;
+import static net.nightfallclosure.stonegrinder.constants.GrindingParticleConstants.*;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private static final int highestPositionFrame = 0;
@@ -160,27 +161,6 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
             spawnGrinderParticles(serverWorld, pos, grindingParticleEffect);
         }
     }
-
-    private static final double[][] particleXZOffsets = {
-            {0.1D, 0.5D},
-            {0.9D, 0.5D},
-            {0.5D, 0.1D},
-            {0.5D, 0.9D}
-    };
-
-    private static final double[][] particleXZDeltas = {
-            {-2.1D, 0.0D},
-            {2.1D, 0.0D},
-            {0.0D, -2.1D},
-            {0.0D, 2.1D}
-    };
-
-    private static final double[][] particleXZRandomOffsetVectors = {
-            {0.0D, -1.0D},
-            {0.0D, 1.0D},
-            {1.0D, 0.0D},
-            {-1.0D, 0.0D}
-    };
 
     private static void spawnGrinderParticles(ServerWorld serverWorld, BlockPos pos,
                                               ItemStackParticleEffect grindingParticleEffect) {
