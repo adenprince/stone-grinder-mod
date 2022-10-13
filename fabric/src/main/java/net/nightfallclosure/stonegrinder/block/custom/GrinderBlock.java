@@ -18,7 +18,8 @@ import net.nightfallclosure.stonegrinder.registry.ModStats;
 import org.jetbrains.annotations.Nullable;
 
 public class GrinderBlock extends AbstractFurnaceBlock {
-    public static final IntProperty GRINDER_ANIMATION_FRAME = IntProperty.of("grinder_animation_frame", 0, 9);
+    public static final IntProperty GRINDER_ANIMATION_FRAME = IntProperty.of(
+            "grinder_animation_frame", 0, 4);
 
     public GrinderBlock(Settings settings) {
         super(settings);
