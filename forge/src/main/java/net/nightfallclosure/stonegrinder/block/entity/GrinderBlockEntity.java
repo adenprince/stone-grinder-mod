@@ -143,11 +143,11 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     }
 
     private void tickAnimation(Level pLevel, BlockPos pPos, BlockState pState) {
-        int nextFrame = this.animationFrames.isEmpty() ? this.currentFrame : this.animationFrames.removeFirst();
-
-        pLevel.setBlockAndUpdate(pPos, pState.setValue(GRINDER_ANIMATION_FRAME, nextFrame));
-
-        this.currentFrame = nextFrame;
+        if (!this.animationFrames.isEmpty()) {
+            int nextFrame = this.animationFrames.removeFirst();
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(GRINDER_ANIMATION_FRAME, nextFrame));
+            this.currentFrame = nextFrame;
+        }
     }
 
     private void tickGrindingParticles(ItemStack grindingItemStack) {

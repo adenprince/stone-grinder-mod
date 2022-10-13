@@ -142,11 +142,11 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     }
 
     private void tickAnimation(World world, BlockPos pos, BlockState state) {
-        int nextFrame = this.animationFrames.isEmpty() ? this.currentFrame : this.animationFrames.removeFirst();
-
-        world.setBlockState(pos, state.with(GRINDER_ANIMATION_FRAME, nextFrame));
-
-        this.currentFrame = nextFrame;
+        if (!this.animationFrames.isEmpty()) {
+            int nextFrame = this.animationFrames.removeFirst();
+            world.setBlockState(pos, state.with(GRINDER_ANIMATION_FRAME, nextFrame));
+            this.currentFrame = nextFrame;
+        }
     }
 
     private void tickGrindingParticles(ItemStack grindingItemStack) {
@@ -197,8 +197,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
                 ((AbstractFurnaceBlockEntityAccessor)this).getMatchGetter();
 
         Recipe recipe = ingredientSlotIsNotEmpty ?
-                grinderMatchGetter.getFirstMatch(this, world).orElse(null) :
-                null;
+                grinderMatchGetter.getFirstMatch(this, world).orElse(null) : null;
 
         return (isBurning || (ingredientSlotIsNotEmpty && fuelSlotIsNotEmpty)) &&
                 AbstractFurnaceBlockEntityInvoker.invokeCanAcceptRecipeOutput(recipe,
