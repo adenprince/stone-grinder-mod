@@ -55,7 +55,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
 
     @Override
     protected Text getContainerName() {
-        return Text.translatable("block.stonegrinder.grinder");
+        return Text.translatable("stonegrinder.container.grinder");
     }
 
     @Override
