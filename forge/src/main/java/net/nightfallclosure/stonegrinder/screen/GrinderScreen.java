@@ -3,7 +3,6 @@ package net.nightfallclosure.stonegrinder.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen;
-import net.minecraft.client.gui.screens.recipebook.BlastingRecipeBookComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +19,7 @@ public class GrinderScreen extends AbstractFurnaceScreen<GrinderMenu> {
             "textures/gui/grinder_gui.png");
 
     public GrinderScreen(GrinderMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
-        super(pMenu, new BlastingRecipeBookComponent(), pPlayerInventory, pTitle, TEXTURE);
+        super(pMenu, new EmptyRecipeBookComponent(), pPlayerInventory, pTitle, TEXTURE);
     }
 
     @Override
@@ -29,6 +28,11 @@ public class GrinderScreen extends AbstractFurnaceScreen<GrinderMenu> {
 
         // Hide the recipe book icon
         this.clearWidgets();
+
+        if (this.recipeBookComponent.isVisible()) {
+            this.recipeBookComponent.toggleVisibility();
+            this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
+        }
     }
 
     @ParametersAreNonnullByDefault

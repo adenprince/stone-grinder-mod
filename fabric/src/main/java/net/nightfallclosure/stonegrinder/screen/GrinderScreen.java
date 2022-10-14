@@ -2,7 +2,6 @@ package net.nightfallclosure.stonegrinder.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.AbstractFurnaceScreen;
-import net.minecraft.client.gui.screen.recipebook.BlastFurnaceRecipeBookScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,7 +15,7 @@ public class GrinderScreen extends AbstractFurnaceScreen<GrinderScreenHandler> {
             "textures/gui/grinder_gui.png");
 
     public GrinderScreen(GrinderScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, new BlastFurnaceRecipeBookScreen(), inventory, title, GRINDER_GUI_TEXTURE);
+        super(handler, new EmptyRecipeBookScreen(), inventory, title, GRINDER_GUI_TEXTURE);
     }
 
     @Override
@@ -26,6 +25,11 @@ public class GrinderScreen extends AbstractFurnaceScreen<GrinderScreenHandler> {
         // This call is to hide the recipe book icon
         // It might be better to use a mixin
         this.clearChildren();
+
+        if (this.recipeBook.isOpen()) {
+            this.recipeBook.toggleOpen();
+            this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth);
+        }
     }
 
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
