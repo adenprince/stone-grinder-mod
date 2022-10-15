@@ -19,13 +19,16 @@ import net.nightfallclosure.stonegrinder.stat.ModStats;
 
 import javax.annotation.Nullable;
 
+import static net.nightfallclosure.stonegrinder.constants.GrinderAnimationConstants.*;
+
 public class GrinderBlock extends AbstractFurnaceBlock {
     public static final IntegerProperty GRINDER_ANIMATION_FRAME = IntegerProperty.create(
-            "grinder_animation_frame", 0, 4);
+            "grinder_animation_frame", highestPositionFrame, grindingFrame);
 
     public GrinderBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(GRINDER_ANIMATION_FRAME, Integer.valueOf(3)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(GRINDER_ANIMATION_FRAME,
+                Integer.valueOf(defaultFrame)));
     }
 
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

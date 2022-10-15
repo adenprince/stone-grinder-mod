@@ -28,17 +28,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import static net.nightfallclosure.stonegrinder.block.custom.GrinderBlock.GRINDER_ANIMATION_FRAME;
+import static net.nightfallclosure.stonegrinder.constants.GrinderAnimationConstants.*;
 import static net.nightfallclosure.stonegrinder.constants.GrindingParticleConstants.*;
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
-    private static final int highestPositionFrame = 0;
-    private static final int grindingFrame = 4;
-    public static final int defaultFrame = 3; // Used in GrinderBlock class
-
-    private static final double particleStartingPointRandomOffsetMagnitude = 0.25D;
-    private static final double particleDeltaRandomOffsetMagnitude = 2.0D;
-    private static final double doNotSpawnParticleProbability = 0.125D;
-
     private boolean grindingOnPreviousTick;
     private LinkedList<Integer> animationFrames;
     private int currentFrame;

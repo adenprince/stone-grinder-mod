@@ -17,13 +17,15 @@ import net.nightfallclosure.stonegrinder.registry.ModBlockEntities;
 import net.nightfallclosure.stonegrinder.registry.ModStats;
 import org.jetbrains.annotations.Nullable;
 
+import static net.nightfallclosure.stonegrinder.constants.GrinderAnimationConstants.*;
+
 public class GrinderBlock extends AbstractFurnaceBlock {
     public static final IntProperty GRINDER_ANIMATION_FRAME = IntProperty.of(
-            "grinder_animation_frame", 0, 4);
+            "grinder_animation_frame", highestPositionFrame, grindingFrame);
 
     public GrinderBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(GRINDER_ANIMATION_FRAME, GrinderBlockEntity.defaultFrame));
+        setDefaultState(getStateManager().getDefaultState().with(GRINDER_ANIMATION_FRAME, defaultFrame));
     }
 
     @Override

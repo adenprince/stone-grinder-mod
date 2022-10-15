@@ -1,6 +1,10 @@
 package net.nightfallclosure.stonegrinder.constants;
 
 public class GrindingParticleConstants {
+    public static final double particleStartingPointRandomOffsetMagnitude = 0.25D;
+    public static final double particleDeltaRandomOffsetMagnitude = 2.0D;
+    public static final double doNotSpawnParticleProbability = 0.125D;
+
     public static final double[][] particleXZOffsets = {
             {0.1D, 0.5D},
             {0.9D, 0.5D},
