@@ -31,7 +31,6 @@ public class GrindingRecipeCategory implements IRecipeCategory<GrindingRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
-    private final IGuiHelper guiHelper;
     private final IDrawableAnimated animatedFlame;
     private final LoadingCache<Integer, IDrawableAnimated> arrowCache;
 
@@ -43,7 +42,6 @@ public class GrindingRecipeCategory implements IRecipeCategory<GrindingRecipe> {
         this.background = guiHelper.createDrawable(TEXTURE, 37, 16, 100, 54);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
                 new ItemStack(ModBlocks.GRINDER_BLOCK.get()));
-        this.guiHelper = guiHelper;
         this.animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300,
                 IDrawableAnimated.StartDirection.TOP, true);
         this.arrowCache = CacheBuilder.newBuilder().maximumSize(25).build(new CacheLoader<>() {

@@ -13,7 +13,7 @@ import net.nightfallclosure.stonegrinder.screen.GrinderMenu;
 
 @REIPlugin
 public class StoneGrinderREIPlugin implements REIServerPlugin {
-    public static CategoryIdentifier<DefaultGrindingDisplay> GRINDING =
+    public static final CategoryIdentifier<DefaultGrindingDisplay> GRINDING =
             CategoryIdentifier.of("stonegrinder", "grinding");
 
     @Override

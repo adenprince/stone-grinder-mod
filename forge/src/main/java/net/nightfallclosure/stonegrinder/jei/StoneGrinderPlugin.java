@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @JeiPlugin
 public class StoneGrinderPlugin implements IModPlugin {
-    public static RecipeType<GrindingRecipe> GRINDING_RECIPE_TYPE =
+    public static final RecipeType<GrindingRecipe> GRINDING_RECIPE_TYPE =
             new RecipeType<>(GrindingRecipeCategory.UID, GrindingRecipe.class);
 
     @Override

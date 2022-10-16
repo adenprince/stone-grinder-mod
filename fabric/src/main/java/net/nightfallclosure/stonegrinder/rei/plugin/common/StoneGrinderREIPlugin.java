@@ -11,7 +11,7 @@ import net.nightfallclosure.stonegrinder.rei.plugin.common.displays.cooking.Defa
 import net.nightfallclosure.stonegrinder.screen.GrinderScreenHandler;
 
 public class StoneGrinderREIPlugin implements REIServerPlugin {
-    public static CategoryIdentifier<DefaultGrindingDisplay> GRINDING =
+    public static final CategoryIdentifier<DefaultGrindingDisplay> GRINDING =
             CategoryIdentifier.of("stonegrinder", "grinding");
 
     @Override

@@ -143,11 +143,8 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         boolean fuelSlotIsNotEmpty = !this.items.get(1).isEmpty();
         boolean isBurning = this.dataAccess.get(0) > 0;
 
-        RecipeManager.CachedCheck<Container, ? extends AbstractCookingRecipe> grinderQuickCheck =
-                this.quickCheck;
-
         Recipe recipe = ingredientSlotIsNotEmpty ?
-                grinderQuickCheck.getRecipeFor(this, level).orElse(null) : null;
+                this.quickCheck.getRecipeFor(this, level).orElse(null) : null;
 
         return (isBurning || (ingredientSlotIsNotEmpty && fuelSlotIsNotEmpty)) &&
                 this.canBurn(recipe, this.items, this.getMaxStackSize());

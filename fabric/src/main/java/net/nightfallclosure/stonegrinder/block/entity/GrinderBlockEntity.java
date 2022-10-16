@@ -147,7 +147,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         RecipeManager.MatchGetter<Inventory, ? extends AbstractCookingRecipe> grinderMatchGetter =
                 ((AbstractFurnaceBlockEntityAccessor)this).getMatchGetter();
 
-        Recipe recipe = ingredientSlotIsNotEmpty ?
+        Recipe<Inventory> recipe = ingredientSlotIsNotEmpty ?
                 grinderMatchGetter.getFirstMatch(this, world).orElse(null) : null;
 
         return (isBurning || (ingredientSlotIsNotEmpty && fuelSlotIsNotEmpty)) &&

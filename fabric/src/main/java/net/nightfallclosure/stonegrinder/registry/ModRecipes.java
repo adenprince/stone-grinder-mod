@@ -13,6 +13,6 @@ public class ModRecipes {
     public static void registerRecipes() {
         GRINDING_RECIPE_TYPE = RecipeType.register(StoneGrinderMod.MOD_ID + ":grinding");
         GRINDING_RECIPE_SERIALIZER = RecipeSerializer.register(StoneGrinderMod.MOD_ID + ":grinding",
-                new CookingRecipeSerializer(GrindingRecipe::new, 100));
+                new CookingRecipeSerializer<>(GrindingRecipe::new, 100));
     }
 }

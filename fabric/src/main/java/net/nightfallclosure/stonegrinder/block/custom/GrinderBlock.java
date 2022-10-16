@@ -32,7 +32,7 @@ public class GrinderBlock extends AbstractFurnaceBlock {
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof GrinderBlockEntity) {
-            player.openHandledScreen((NamedScreenHandlerFactory)((Object)blockEntity));
+            player.openHandledScreen((NamedScreenHandlerFactory)blockEntity);
             player.incrementStat(ModStats.INTERACT_WITH_GRINDER);
         }
     }

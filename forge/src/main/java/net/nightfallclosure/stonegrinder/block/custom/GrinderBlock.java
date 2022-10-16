@@ -28,7 +28,7 @@ public class GrinderBlock extends AbstractFurnaceBlock {
     public GrinderBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(GRINDER_ANIMATION_FRAME,
-                Integer.valueOf(defaultFrame)));
+                defaultFrame));
     }
 
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
