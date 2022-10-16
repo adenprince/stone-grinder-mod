@@ -33,17 +33,15 @@ import static net.nightfallclosure.stonegrinder.constants.GrindingParticleConsta
 
 public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     private boolean grindingOnPreviousTick;
-    private LinkedList<Integer> animationFrames;
-    private int currentFrame;
     private boolean grindingSoundPlayed;
+    private final GrinderAnimator grinderAnimator;
 
     public GrinderBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GRINDER_BLOCK_ENTITY_TYPE, pos, state, ModRecipes.GRINDING_RECIPE_TYPE);
 
         this.grindingOnPreviousTick = false;
         this.grindingSoundPlayed = true;
-        animationFrames = new LinkedList<>();
-        currentFrame = defaultFrame;
+        this.grinderAnimator = new GrinderAnimator();
     }
 
     @Override
@@ -69,18 +67,19 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
                     ((AbstractFurnaceBlockEntityAccessor)blockEntity).getCookTime() == 0) {
                 blockEntity.grindingSoundPlayed = false;
 
-                blockEntity.animationFrames.clear();
-                blockEntity.queueNewBlockAnimation();
+                blockEntity.grinderAnimator.getAnimationFrames().clear();
+                blockEntity.grinderAnimator.queueNewBlockAnimation();
             }
         }
-        else if (blockEntity.getLastFrame() != defaultFrame) {
-            blockEntity.animationFrames.clear();
-            blockEntity.queueTransitionToDefaultFrame();
+        else if (blockEntity.grinderAnimator.getLastFrame() != defaultFrame) {
+            blockEntity.grinderAnimator.getAnimationFrames().clear();
+            blockEntity.grinderAnimator.queueTransitionToDefaultFrame();
         }
 
         blockEntity.tickAnimation(world, pos, state);
 
-        if (blockEntityIsGrinding && blockEntity.currentFrame == grindingFrame && !grindingItemStack.isEmpty()) {
+        if (blockEntityIsGrinding && blockEntity.grinderAnimator.getCurrentFrame() == grindingFrame &&
+                !grindingItemStack.isEmpty()) {
             blockEntity.tickGrindingParticles(grindingItemStack);
 
             if (!blockEntity.grindingSoundPlayed) {
@@ -93,52 +92,11 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         blockEntity.grindingOnPreviousTick = blockEntityIsGrinding;
     }
 
-    private int getLastFrame() {
-        return this.animationFrames.isEmpty() ? this.currentFrame : this.animationFrames.getLast();
-    }
-
-    private void queueNewBlockAnimation() {
-        this.queueTransitionToHighestPositionFrame();
-        this.queueMultipleOfOneFrame(highestPositionFrame, 7);
-        this.queueTransitionToGrindingFrame();
-    }
-
-    private void queueTransitionToDefaultFrame() {
-        if (this.currentFrame < defaultFrame) {
-            for (int i = this.currentFrame + 1; i <= defaultFrame; ++i) {
-                this.animationFrames.add(i);
-            }
-        }
-        else {
-            for (int i = this.currentFrame - 1; i >= defaultFrame; --i) {
-                this.animationFrames.add(i);
-            }
-        }
-    }
-
-    private void queueTransitionToHighestPositionFrame() {
-        for (int i = this.getLastFrame() - 1; i >= highestPositionFrame; --i) {
-            this.animationFrames.add(i);
-        }
-    }
-
-    private void queueTransitionToGrindingFrame() {
-        for (int i = this.getLastFrame() + 1; i <= grindingFrame; ++i) {
-            this.animationFrames.add(i);
-        }
-    }
-
-    private void queueMultipleOfOneFrame(int frame, int amount) {
-        for (int i = 0; i < amount; ++i) {
-            this.animationFrames.add(frame);
-        }
-    }
-
     private void tickAnimation(World world, BlockPos pos, BlockState state) {
-        if (!this.animationFrames.isEmpty()) {
-            int nextFrame = this.animationFrames.removeFirst();
+        if (!this.grinderAnimator.getAnimationFrames().isEmpty()) {
+            int nextFrame = this.grinderAnimator.getAnimationFrames().removeFirst();
             world.setBlockState(pos, state.with(GRINDER_ANIMATION_FRAME, nextFrame));
-            this.currentFrame = nextFrame;
+            this.grinderAnimator.setCurrentFrame(nextFrame);
         }
     }
 
@@ -201,9 +159,9 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         this.grindingOnPreviousTick = nbt.getBoolean("GrindingOnPreviousTick");
-        this.animationFrames = new LinkedList<>(
-                Arrays.stream(nbt.getIntArray("AnimationFrames")).boxed().toList());
-        this.currentFrame = nbt.getShort("CurrentFrame");
+        this.grinderAnimator.setAnimationFrames(new LinkedList<>(
+                Arrays.stream(nbt.getIntArray("AnimationFrames")).boxed().toList()));
+        this.grinderAnimator.setCurrentFrame(nbt.getShort("CurrentFrame"));
         this.grindingSoundPlayed = nbt.getBoolean("GrindingSoundPlayed");
     }
 
@@ -211,8 +169,9 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         nbt.putBoolean("GrindingOnPreviousTick", this.grindingOnPreviousTick);
-        nbt.putIntArray("AnimationFrames", this.animationFrames.stream().mapToInt(x -> x).toArray());
-        nbt.putShort("CurrentFrame", (short)this.currentFrame);
+        nbt.putIntArray("AnimationFrames", this.grinderAnimator.getAnimationFrames()
+                .stream().mapToInt(x -> x).toArray());
+        nbt.putShort("CurrentFrame", (short)this.grinderAnimator.getCurrentFrame());
         nbt.putBoolean("GrindingSoundPlayed", this.grindingSoundPlayed);
     }
 }
