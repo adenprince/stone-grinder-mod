@@ -43,9 +43,7 @@ public class StoneGrinder
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        event.enqueueWork(() -> {
-            ModStats.registerStats();
-        });
+        event.enqueueWork(ModStats::registerStats);
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

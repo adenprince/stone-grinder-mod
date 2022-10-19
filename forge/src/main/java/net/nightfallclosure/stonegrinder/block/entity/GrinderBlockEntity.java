@@ -11,9 +11,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -143,7 +141,7 @@ public class GrinderBlockEntity extends AbstractFurnaceBlockEntity {
         boolean fuelSlotIsNotEmpty = !this.items.get(1).isEmpty();
         boolean isBurning = this.dataAccess.get(0) > 0;
 
-        Recipe recipe = ingredientSlotIsNotEmpty ?
+        Recipe<Container> recipe = ingredientSlotIsNotEmpty ?
                 this.quickCheck.getRecipeFor(this, level).orElse(null) : null;
 
         return (isBurning || (ingredientSlotIsNotEmpty && fuelSlotIsNotEmpty)) &&

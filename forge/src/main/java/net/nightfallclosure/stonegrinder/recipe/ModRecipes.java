@@ -23,7 +23,7 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<GrindingRecipe>> GRINDING_RECIPE_SERIALIZER =
             RECIPE_SERIALIZERS.register("grinding",
-                    () -> new SimpleCookingSerializer(GrindingRecipe::new, 100));
+                    () -> new SimpleCookingSerializer<>(GrindingRecipe::new, 100));
 
     public static void register(IEventBus eventBus) {
         RECIPE_TYPES.register(eventBus);

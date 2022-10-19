@@ -13,12 +13,9 @@ public class ModSounds {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, StoneGrinder.MOD_ID);
 
     public static final RegistryObject<SoundEvent> GRINDER_GRIND_SOUND_EVENT =
-            registerSoundEvent("grind");
-
-    private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
-        return SOUND_EVENTS.register(name, () ->
-                new SoundEvent(new ResourceLocation(StoneGrinder.MOD_ID, name)));
-    }
+            SOUND_EVENTS.register("grind", () ->
+                    new SoundEvent(new ResourceLocation(StoneGrinder.MOD_ID,
+                            "grind")));
 
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
