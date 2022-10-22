@@ -9,6 +9,7 @@ version="${file.jarVersion}"
 displayName="Stone Grinder"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/stone-grinder"
 logoFile="stonegrinder_icon_256x256.png"
+credits="pancakes0228: Chinese (Traditional, Taiwan) Translation"
 authors="NightfallClosure, ninjakitty844"
 description='''
 Adds a Grinder block with utility recipes for building blocks.

@@ -36,6 +36,9 @@ Existing Stone Grinder item tags such as `grinds_to_sand` can also be added to. 
 - NightfallClosure: Programmer, Designer
 - ninjakitty844: Artist, Designer
 
+## Translators
+- pancakes0228: Chinese (Traditional, Taiwan) Translation
+
 ## Additional Notes
 Please do not request support for Minecraft versions or mod loaders other than those currently supported. The mod creators will make decisions about future support.
 

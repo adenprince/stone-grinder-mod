@@ -1,0 +1,11 @@
+{
+  "block.stonegrinder.grinder": "磨石機",
+  "stonegrinder.container.grinder": "磨石機",
+  "stat.stonegrinder.interact_with_grinder": "與磨石機交互",
+  "subtitles.block.grinder.grind": "磨石機工作",
+  "advancements.stonegrinder.grinder.title": "擁抱磨石機",
+  "advancements.stonegrinder.grinder.description": "獲得磨石機",
+  "category.stonegrinder.grinding": "磨石機工作",
+  "category.stonegrinder.grinding.experience": "%s XP",
+  "category.stonegrinder.grinding.time.seconds": "%ss"
+}
