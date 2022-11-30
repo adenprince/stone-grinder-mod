@@ -18,4 +18,9 @@ public class GrindingRecipe extends AbstractCookingRecipe {
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.GRINDING_RECIPE_SERIALIZER.get();
     }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
 }

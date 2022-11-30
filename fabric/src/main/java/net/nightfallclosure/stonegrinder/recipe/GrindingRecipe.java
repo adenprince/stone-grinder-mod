@@ -23,4 +23,9 @@ public class GrindingRecipe extends AbstractCookingRecipe {
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.GRINDING_RECIPE_SERIALIZER;
     }
+
+    @Override
+    public boolean isIgnoredInRecipeBook() {
+        return true;
+    }
 }
