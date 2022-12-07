@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.nightfallclosure.stonegrinder.block.ModBlocks;
+import org.jetbrains.annotations.NotNull;
 
 public class GrindingRecipe extends AbstractCookingRecipe {
     public GrindingRecipe(ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult,
@@ -11,11 +12,11 @@ public class GrindingRecipe extends AbstractCookingRecipe {
         super(ModRecipes.GRINDING_RECIPE_TYPE.get(), pId, pGroup, pIngredient, pResult, pExperience, pCookingTime);
     }
 
-    public ItemStack getToastSymbol() {
+    public @NotNull ItemStack getToastSymbol() {
         return new ItemStack(ModBlocks.GRINDER_BLOCK.get());
     }
 
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return ModRecipes.GRINDING_RECIPE_SERIALIZER.get();
     }
 
