@@ -43,7 +43,7 @@ public class GrinderScreen extends AbstractFurnaceScreen<GrinderMenu> {
             if (Minecraft.getInstance().player != null) {
                 Minecraft.getInstance().player.getRecipeBook().setOpen(RecipeBookType.BLAST_FURNACE,
                         false);
-            } 
+            }
         }
     }
 

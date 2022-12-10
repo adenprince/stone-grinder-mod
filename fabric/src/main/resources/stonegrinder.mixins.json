@@ -9,12 +9,14 @@
     "AbstractFurnaceBlockEntityInvoker",
     "AbstractFurnaceBlockEntityAccessor",
     "AbstractFurnaceScreenHandlerAccessor",
-    "AbstractFurnaceScreenAccessor"
+    "AbstractFurnaceScreenAccessor",
+    "AbstractFurnaceBlockEntityMixin"
   ],
   "server": [
     "AbstractFurnaceBlockEntityInvoker",
     "AbstractFurnaceBlockEntityAccessor",
-    "AbstractFurnaceScreenHandlerAccessor"
+    "AbstractFurnaceScreenHandlerAccessor",
+    "AbstractFurnaceBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
