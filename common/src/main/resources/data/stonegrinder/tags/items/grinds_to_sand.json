@@ -2,10 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:gravel",
-    "minecraft:sandstone",
-    "minecraft:chiseled_sandstone",
-    "minecraft:cut_sandstone",
-    "minecraft:smooth_sandstone",
     "minecraft:black_terracotta",
     "minecraft:blue_terracotta",
     "minecraft:brown_terracotta",

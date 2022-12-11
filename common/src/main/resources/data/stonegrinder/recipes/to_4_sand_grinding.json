@@ -1,0 +1,12 @@
+{
+  "type": "stonegrinder:grinding",
+  "ingredient": {
+    "tag": "stonegrinder:grinds_to_4_sand"
+  },
+  "result": {
+    "item": "minecraft:sand",
+    "count": 4
+  },
+  "experience": 0.1,
+  "cookingtime": 100
+}
