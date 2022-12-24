@@ -1,5 +1,6 @@
 {
   "type": "stonegrinder:grinding",
+  "category": "blocks",
   "ingredient": {
     "tag": "stonegrinder:grinds_to_blackstone"
   },

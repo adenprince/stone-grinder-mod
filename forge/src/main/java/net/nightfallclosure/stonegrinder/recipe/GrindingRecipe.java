@@ -7,9 +7,10 @@ import net.nightfallclosure.stonegrinder.block.ModBlocks;
 import org.jetbrains.annotations.NotNull;
 
 public class GrindingRecipe extends AbstractCookingRecipe {
-    public GrindingRecipe(ResourceLocation pId, String pGroup, Ingredient pIngredient, ItemStack pResult,
-                          float pExperience, int pCookingTime) {
-        super(ModRecipes.GRINDING_RECIPE_TYPE.get(), pId, pGroup, pIngredient, pResult, pExperience, pCookingTime);
+    public GrindingRecipe(ResourceLocation pId, String pGroup, CookingBookCategory pCategory, Ingredient pIngredient,
+                          ItemStack pResult, float pExperience, int pCookingTime) {
+        super(ModRecipes.GRINDING_RECIPE_TYPE.get(), pId, pGroup, pCategory,
+                pIngredient, pResult, pExperience, pCookingTime);
     }
 
     public @NotNull ItemStack getToastSymbol() {

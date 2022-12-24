@@ -6,12 +6,12 @@ import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
 import me.shedaniel.rei.api.common.transfer.info.MenuInfoRegistry;
 import me.shedaniel.rei.api.common.transfer.info.simple.RecipeBookGridMenuInfo;
 import me.shedaniel.rei.api.common.transfer.info.simple.SimpleMenuInfoProvider;
-import me.shedaniel.rei.forge.REIPlugin;
+import me.shedaniel.rei.forge.REIPluginCommon;
 import me.shedaniel.rei.plugin.common.displays.cooking.DefaultCookingDisplay;
 import net.nightfallclosure.stonegrinder.rei.plugin.common.displays.cooking.DefaultGrindingDisplay;
 import net.nightfallclosure.stonegrinder.screen.GrinderMenu;
 
-@REIPlugin
+@REIPluginCommon
 public class StoneGrinderREIPlugin implements REIServerPlugin {
     public static final CategoryIdentifier<DefaultGrindingDisplay> GRINDING =
             CategoryIdentifier.of("stonegrinder", "grinding");

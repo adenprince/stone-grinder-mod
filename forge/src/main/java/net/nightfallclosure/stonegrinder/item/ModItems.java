@@ -1,7 +1,6 @@
 package net.nightfallclosure.stonegrinder.item;
 
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,7 +15,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, StoneGrinder.MOD_ID);
 
     public static final RegistryObject<Item> GRINDER_BLOCK_ITEM = ITEMS.register("grinder",
-            () -> new BlockItem(GRINDER_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+            () -> new BlockItem(GRINDER_BLOCK.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

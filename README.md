@@ -1,6 +1,6 @@
 # Stone Grinder
 [![License](https://img.shields.io/github/license/adenprince/stone-grinder-mod)](LICENSE.txt)
-![Supported MC Versions](https://img.shields.io/badge/Supported%20MC%20Versions-1.19.2-brightgreen)
+![Supported MC Versions](https://img.shields.io/badge/Supported%20MC%20Versions-1.19.2%2C%201.19.3-brightgreen)
 [![CurseForge](https://cf.way2muchnoise.eu/full_681480_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/stone-grinder)
 
 The Stone Grinder mod is a Minecraft mod that adds a Grinder block, which includes utility recipes for building blocks. Unused building materials can be recycled into other blocks, and sand is made renewable. This mod is available for both the Fabric and Forge mod loaders. The Fabric version of this mod requires the Fabric API.
@@ -27,7 +27,7 @@ To craft a Grinder block, surround an iron ingot in the center slot with cobbles
 - Mud Bricks -> Packed Mud
 - Prismarine Bricks -> Prismarine
 
-This mod is compatible with the [Roughly Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) for viewing grinding recipes in both the Fabric and Forge versions. The Forge version is also compatible with the [Just Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/jei) for viewing grinding recipes.
+This mod is compatible with the [Roughly Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-items) for viewing grinding recipes in both the Fabric and Forge versions. The Forge version is also compatible with the [Just Enough Items mod](https://www.curseforge.com/minecraft/mc-mods/jei) for viewing grinding recipes. (The Forge version of the mod for Minecraft 1.19.3 does not have Just Enough Items integration.)
 
 ## Adding Grinding Recipes
 Additional grinding recipes can be added by mods or datapacks by adding recipes with the type `stonegrinder:grinding`. Default Stone Grinder recipes are in [this folder](common/src/main/resources/data/stonegrinder/recipes).

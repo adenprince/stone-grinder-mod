@@ -6,9 +6,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CookingRecipeSerializer;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.recipe.book.CookingRecipeCategory;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
 
 public class GrindingRecipeSerializer extends CookingRecipeSerializer<GrindingRecipe> {
     private final int cookingTime;
@@ -24,6 +25,8 @@ public class GrindingRecipeSerializer extends CookingRecipeSerializer<GrindingRe
     @Override
     public GrindingRecipe read(Identifier identifier, JsonObject jsonObject) {
         String group = JsonHelper.getString(jsonObject, "group", "");
+        CookingRecipeCategory cookingRecipeCategory = CookingRecipeCategory.CODEC.byId(
+                JsonHelper.getString(jsonObject, "category", null), CookingRecipeCategory.MISC);
         JsonElement ingredientJson = JsonHelper.hasArray(jsonObject, "ingredient") ?
                 JsonHelper.getArray(jsonObject, "ingredient") :
                 JsonHelper.getObject(jsonObject, "ingredient");
@@ -35,11 +38,12 @@ public class GrindingRecipeSerializer extends CookingRecipeSerializer<GrindingRe
         else {
             String resultString = JsonHelper.getString(jsonObject, "result");
             Identifier resultIdentifier = new Identifier(resultString);
-            itemStack = new ItemStack(Registry.ITEM.getOrEmpty(resultIdentifier).orElseThrow(() ->
+            itemStack = new ItemStack(Registries.ITEM.getOrEmpty(resultIdentifier).orElseThrow(() ->
                     new IllegalStateException("Item: " + resultString + " does not exist")));
         }
         float experience = JsonHelper.getFloat(jsonObject, "experience", 0.0F);
         int cookingTime = JsonHelper.getInt(jsonObject, "cookingtime", this.cookingTime);
-        return this.recipeFactory.create(identifier, group, ingredient, itemStack, experience, cookingTime);
+        return this.recipeFactory.create(identifier, group, cookingRecipeCategory,
+                ingredient, itemStack, experience, cookingTime);
     }
 }

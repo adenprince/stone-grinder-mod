@@ -14,8 +14,7 @@ public class ModSounds {
 
     public static final RegistryObject<SoundEvent> GRINDER_GRIND_SOUND_EVENT =
             SOUND_EVENTS.register("grind", () ->
-                    new SoundEvent(new ResourceLocation(StoneGrinder.MOD_ID,
-                            "grind")));
+                    SoundEvent.createVariableRangeEvent(new ResourceLocation(StoneGrinder.MOD_ID, "grind")));
 
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);

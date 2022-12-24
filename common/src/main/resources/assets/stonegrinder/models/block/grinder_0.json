@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "stonegrinder:blocks/grinder_top",
-    "side": "stonegrinder:blocks/grinder_0"
+    "end": "stonegrinder:block/grinder_top",
+    "side": "stonegrinder:block/grinder_0"
   }
 }

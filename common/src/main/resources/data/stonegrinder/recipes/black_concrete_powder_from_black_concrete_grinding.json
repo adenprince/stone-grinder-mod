@@ -1,5 +1,6 @@
 {
   "type": "stonegrinder:grinding",
+  "category": "blocks",
   "ingredient": {
     "item": "minecraft:black_concrete"
   },

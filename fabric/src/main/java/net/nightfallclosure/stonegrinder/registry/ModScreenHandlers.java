@@ -1,9 +1,10 @@
 package net.nightfallclosure.stonegrinder.registry;
 
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.nightfallclosure.stonegrinder.StoneGrinderMod;
 import net.nightfallclosure.stonegrinder.screen.GrinderScreen;
 import net.nightfallclosure.stonegrinder.screen.GrinderScreenHandler;
@@ -13,7 +14,7 @@ public class ModScreenHandlers {
 
     public static void registerScreenHandlers() {
         GRINDER_SCREEN_HANDLER_TYPE = new ScreenHandlerType<>(GrinderScreenHandler::new);
-        Registry.register(Registry.SCREEN_HANDLER, new Identifier(StoneGrinderMod.MOD_ID, "grinder"),
+        Registry.register(Registries.SCREEN_HANDLER, new Identifier(StoneGrinderMod.MOD_ID, "grinder"),
                 GRINDER_SCREEN_HANDLER_TYPE);
     }
 
